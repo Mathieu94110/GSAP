@@ -1,0 +1,125 @@
+body{
+	display: flex;
+background-image: url("control-system.png");
+background-color: rgb(180,180,110);
+}
+
+
+.funnel{
+	padding-top: 50px;
+	width: 150px;
+	height: auto;
+position: absolute;
+margin-left: 600px;
+  
+   }
+.funnel2{
+		padding-top: 50px;
+	width: 150px;
+	height: auto;
+position: absolute;
+margin-left: 800px;
+   }
+-
+.funnel , .funnel2 {
+	max-width:100%;
+}
+.tapis {
+	height: auto;
+	width: 240px;
+	margin-left: 470px;
+margin-top: 390px;
+position: absolute;
+
+}
+.tapis2 {
+	height: auto;
+	width: 240px;
+	margin-left: 700px;
+margin-top: 390px;
+position: absolute;
+
+}
+.tapis3 {
+	height: auto;
+	width: 240px;
+	margin-left: 929px;
+margin-top: 390px;
+position: absolute;
+
+}
+
+.machinearticule{
+	display: flex;
+position: absolute;
+}
+#conveyor{
+	position: absolute;
+	padding-top: 20px;
+	width: 400px;
+}
+.bras{
+	position: absolute;
+margin-left: 100px;
+padding-top: 20px;
+}
+#arm{
+padding-left: 330px;
+margin-top: 6px;
+padding-top: 20px;
+}
+#tuyau{
+padding-top: 222px;
+width: 100px;
+padding-left: 320px; 
+height: 450px;
+}
+#emoticon{
+	padding-top: 160px;
+	position: absolute;
+	z-index: 1;
+	height: 60px;
+	width:60px;
+}
+.play1 , .play2, .play3, .play4{
+	height: 30px;
+	width: auto;
+}
+#play1{
+	background-color: orange;
+font-weight: bold;
+}
+#play2{
+	background-color: yellow;
+font-weight: bold;
+}
+#play3{
+	background-color: blue;
+font-weight: bold;
+}
+#play4{
+	background-color: green;
+font-weight: bold;
+}
+
+button{
+	height: 20px;
+	width: auto;
+}
+.quatreboutons{
+	display: block;
+height: 40px;
+}
+#img1{
+	width: 50px;
+	padding-left: 650px;
+position: absolute;
+z-index:2;
+}
+#img2{
+	width: 50px;
+	padding-left: 850px;
+position: absolute;
+z-index:2;
+
+}
