@@ -1,125 +1,171 @@
-body{
-	display: flex;
-background-image: url("control-system.png");
-background-color: rgb(180,180,110);
+html {
+  height: 100vh;
+  width: 100%;
 }
 
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url("./images/control-system.png");
+  background-color: rgb(180, 180, 110);
+}
 
-.funnel{
-	padding-top: 50px;
-	width: 150px;
-	height: auto;
-position: absolute;
-margin-left: 600px;
-  
-   }
-.funnel2{
-		padding-top: 50px;
-	width: 150px;
-	height: auto;
-position: absolute;
-margin-left: 800px;
-   }
--
-.funnel , .funnel2 {
-	max-width:100%;
+.my_container {
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+}
+#img1 {
+  width: 50px;
+  padding-left: 575px;
+  position: absolute;
+  z-index: 2;
+}
+.funnel {
+  padding-top: 50px;
+  width: 100px;
+  height: auto;
+  position: absolute;
+  margin-left: 550px;
+}
+#champignon {
+  width: 100px;
+  height: 100px;
+  padding-top: 300px;
+  left: 730px;
+  position: absolute;
+}
+#thwomp {
+  padding-top: 50px;
+  width: 120px;
+  margin-left: 810px;
+  height: 150px;
+  position: absolute;
+}
+#img2 {
+  width: 50px;
+  padding-top: 20px;
+  padding-left: 1025px;
+  position: absolute;
+  z-index: 2;
+}
+.funnel2 {
+  padding-top: 50px;
+  width: 100px;
+  height: auto;
+  position: absolute;
+  margin-left: 1000px;
+}
+.funnel,
+.funnel2 {
+  max-width: 100%;
+}
+#bowser {
+  width: 120px;
+  height: 120px;
+  padding-top: 86px;
+  margin-left: 1130px;
+  position: absolute;
 }
 .tapis {
-	height: auto;
-	width: 240px;
-	margin-left: 470px;
-margin-top: 390px;
-position: absolute;
-
+  height: auto;
+  width: 275px;
+  margin-left: 470px;
+  margin-top: 390px;
+  position: absolute;
 }
 .tapis2 {
-	height: auto;
-	width: 240px;
-	margin-left: 700px;
-margin-top: 390px;
-position: absolute;
-
+  height: auto;
+  width: 275px;
+  margin-left: 732px;
+  margin-top: 390px;
+  position: absolute;
 }
 .tapis3 {
-	height: auto;
-	width: 240px;
-	margin-left: 929px;
-margin-top: 390px;
-position: absolute;
-
+  height: auto;
+  width: 275px;
+  margin-left: 994px;
+  margin-top: 390px;
+  position: absolute;
 }
 
-.machinearticule{
-	display: flex;
-position: absolute;
+.machinearticule {
+  display: flex;
+  height: 85%;
+  width: 100%;
 }
-#conveyor{
-	position: absolute;
-	padding-top: 20px;
-	width: 400px;
+#conveyor {
+  position: absolute;
+  height: 10%;
+  width: 400px;
 }
-.bras{
-	position: absolute;
-margin-left: 100px;
-padding-top: 20px;
+.bras {
+  position: absolute;
+  margin-left: 100px;
+
+  height: 100%;
 }
-#arm{
-padding-left: 330px;
-margin-top: 6px;
-padding-top: 20px;
-}
-#tuyau{
-padding-top: 222px;
-width: 100px;
-padding-left: 320px; 
-height: 450px;
-}
-#emoticon{
-	padding-top: 160px;
-	position: absolute;
-	z-index: 1;
-	height: 60px;
-	width:60px;
-}
-.play1 , .play2, .play3, .play4{
-	height: 30px;
-	width: auto;
-}
-#play1{
-	background-color: orange;
-font-weight: bold;
-}
-#play2{
-	background-color: yellow;
-font-weight: bold;
-}
-#play3{
-	background-color: blue;
-font-weight: bold;
-}
-#play4{
-	background-color: green;
-font-weight: bold;
+#arm {
+  padding-left: 330px;
+  height: 220px;
+  width: auto;
+  padding-top: 30px;
 }
 
-button{
-	height: 20px;
-	width: auto;
+#tuyau {
+  width: 100px;
+  padding-left: 320px;
+  height: 50%;
+  position: absolute;
+  bottom: 0;
 }
-.quatreboutons{
-	display: block;
-height: 40px;
+#emoticon {
+  padding-top: 160px;
+  position: absolute;
+  z-index: 1;
+  height: 60px;
+  width: 60px;
 }
-#img1{
-	width: 50px;
-	padding-left: 650px;
-position: absolute;
-z-index:2;
+.play1,
+.play2,
+.play3,
+.play4 {
+  height: 30px;
+  width: auto;
 }
-#img2{
-	width: 50px;
-	padding-left: 850px;
-position: absolute;
-z-index:2;
+#play1 {
+  background-color: orange;
+  font-weight: bold;
+}
+#play2 {
+  background-color: yellow;
+  font-weight: bold;
+}
+#play3 {
+  background-color: blue;
+  font-weight: bold;
+}
+#play4 {
+  background-color: green;
+  font-weight: bold;
+}
 
+button {
+  height: 20px;
+  width: auto;
+}
+.quatreboutons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 15%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }

@@ -1,11 +1,19 @@
 {
-  "name": "node-sass",
+  "name": "gsap",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "First project modified",
+  "main": "Gsap.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mathieu94110/GSAP.git"
+  },
+  "author": "Mathieu Enault",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mathieu94110/GSAP/issues"
+  },
+  "homepage": "https://github.com/Mathieu94110/GSAP#readme"
 }

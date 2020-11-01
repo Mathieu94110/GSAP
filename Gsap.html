@@ -9,35 +9,42 @@
 </head>
 
 <body>
-    <!--<img src="emoji_face.png" id="logo"> -->
-    <div class="machinearticule" id="div">
-        <img class="bras" src="conveyor_base.png">
-        <img src="conveyor_arm2.png" id="conveyor">
-        <img  src="conveyor_arm.png" id="arm">
+    <div class="my_container">
+        <div class="quatreboutons">
+            <div>
+                <button id="play1" onclick="start('images/tongue_eyes','images/tongue_mouth')">emo-tongue</button>
+                <button id="play2" onclick="start('images/happy_eyes','images/happy_mouth' )">emo-happy</button></div>
+            <div> <button id="play3" onclick="start('./images/sad_eyes','images/sad_mouth')">emo-sad</button>
+                <button id="play4" onclick="start('images/in-love_eyes','images/in-love_mouth')">emo-in-love</button>
+            </div>
+        </div>
+        <!--<img src="emoji_face.png" id="logo"> -->
+        <div class="machinearticule" id="div">
+            <img class="bras" src="./images/conveyor_base.png">
+            <img src="./images/conveyor_arm2.png" id="conveyor">
+            <img src="./images/conveyor_arm.png" id="arm">
+            <img src="./images/emoji_face.png" id="emoticon">
+            <img src="./images/tuyau.png" id="tuyau">
+            <img src="./images/thwomp.png" id="thwomp">
+            <img src="./images/bowser.png" id="bowser">
+            <img src="./images/champignon.png" id="champignon">
+            <img src="./images/funnel.png" class="funnel">
+            <img src="./images/funnel.png" class="funnel2">
+            <img src="">
 
-        <img src="funnel.png" class="funnel">
-        <img src="funnel.png" class="funnel2">
-        <img src="">
-        
-        
-        <img src="conveyor_belt_line.png" class="tapis">
-        <img src="conveyor_belt_line.png" class="tapis2">
-        <img src="conveyor_belt_line.png" class="tapis3">
+
+            <img src="./images/conveyor_belt_line.png" class="tapis">
+            <img src="./images/conveyor_belt_line.png" class="tapis2">
+            <img src="./images/conveyor_belt_line.png" class="tapis3">
+        </div>
+
+
+
+
+
     </div>
-    <img src="emoji_face.png"id="emoticon">
-    <img src="tuyau.png" id="tuyau">
-	
-    
-<div class="quatreboutons">
-<div>
-    <button id="play1" onclick="start('tongue_eyes','tongue_mouth')">emo-tongue</button>
-    <button id="play2" onclick="start('happy_eyes','happy_mouth' )">emo-happy</button></div>
-   <div> <button id="play3" onclick="start('sad_eyes','sad_mouth')">emo-sad</button>
-    <button id="play4" onclick="start('in-love_eyes','in-love_mouth')">emo-in-love</button></div>
-   </div> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
 
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
     <script type="text/javascript" src="./Gsap.js"></script>
 </body>
 
