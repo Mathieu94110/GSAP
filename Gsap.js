@@ -44,13 +44,13 @@ function start(eyes, mouth) {
       repeat: -1,
       yoyo: true,
       defaults: {
-        duration: 2,
+        duration: 1.5,
       },
     })
     .to("#thwomp", {
       y: 210,
       scale: 1.1,
-      ease: "power4.in",
+      ease: "none",
     });
 
   //Mouvement du champignon
@@ -113,7 +113,7 @@ function start(eyes, mouth) {
   gsap.to(img1, 2, { y: 350, delay: 7 }); // les yeux se pose
   gsap.to(emoticon, {
     duration: 2.5,
-    x: 620,
+    x: 600,
     delay: 9,
     ease: "elastic.out(1, 0.3)",
   }); // Il se prend le champigon et recule
@@ -121,7 +121,7 @@ function start(eyes, mouth) {
   ////////////////////////////////////////
   gsap.to(img1, {
     duration: 2.5,
-    x: 55, ////
+    x: 35, ////
     delay: 9,
     ease: "elastic.out(1, 0.3)",
   }); // Il se prend le champigon et recule
@@ -129,25 +129,24 @@ function start(eyes, mouth) {
   gsap.to(img1, {
     ////oeil prend son elan
     duration: 0.5,
-    x: -95,
+    x: -85,
     delay: 10,
   });
-
+  gsap.to(emoticon, {
+    duration: 0.5,
+    x: 485,
+    delay: 10,
+  }); // Emoticon PREND SON 2LAN
   gsap.to(img1, {
-    /////oeil mais coup de tete
+    /////oeil met coup de tete
     duration: 0.3,
-    x: 105,
+    x: 90,
     delay: 10.5,
   });
 
   ////////////////////////////////////
   gsap.to(emoticon, {
-    duration: 0.5,
-    x: 485,
-    delay: 10,
-  }); // Il PREND SON 2LAN
-  gsap.to(emoticon, {
-    ////// tete met coup de tete
+    ////// Emoticon met coup de tete
     duration: 0.3,
     x: 670,
     delay: 10.5,
@@ -155,65 +154,51 @@ function start(eyes, mouth) {
   gsap.fromTo(
     "#champignon",
     { x: 0, y: 0 },
-    { rotation: 260, x: 1300, y: -50, scale: 1.5, duration: 5, delay: 10.6 }
+    { rotation: 260, x: 450, y: -50, scale: 1.5, duration: 1.5, delay: 10.6 }
   ); // Le champigonon s'éjecte
+  //TweenLite.to("#champigon", 12, {visibility: "hidden"} ,
 
-  ///////////////////////////////////////////////
+  // this code has the same effect
+
+  /////////////
   gsap.to(emoticon, {
     ////// tete s'approche du mur
-    duration: 1,
+    duration: 2,
     x: 750,
     delay: 11.8,
   });
   gsap.to(img1, {
     /////oeil ...
-    duration: 1,
+    duration: 2, ////////////////////////////
     x: 180,
     delay: 11.8,
   });
   gsap.to(emoticon, {
     ////// tete saute
-    duration: 2,
-    delay: 15.8,
-    x: 950,
+    duration: 0.5,
+    delay: 13.8,
+    x: 990,
   });
 
   TweenMax.set("img1", { xPercent: "-50%", yPercent: "-50%" });
   tl = new TimelineMax();
-  tl.to("#img1", 2, { rotation: 360, x: 380, delay: 15.8 });
+  tl.to("#img1", 0.5, { rotation: 360, x: 440, delay: 13.8 });
 
   gsap.to(emoticon, {
     duration: 2,
-    delay: 17.8,
+    delay: 14.3,
     ease: "slow(0.7, 0.7, false)",
-    x: 1020,
+    x: 1070,
   });
   gsap.to(img1, {
     duration: 2,
-    delay: 17.8,
+    delay: 14.3,
     ease: "slow(0.7, 0.7, false)",
-    x: 451,
+    x: 500,
   });
   gsap.to(img2, {
     duration: 2,
-    delay: 19.8,
+    delay: 15.8,
     y: 355,
-  });
-  gsap.to(img1, {
-    duration: 2,
-    delay: 21.8,
-    ease: "slow(0.7, 0.7, false)",
-    x: 470,
-  });
-  gsap.to(img2, {
-    duration: 2,
-    delay: 21.8,
-    x: 20,
-  });
-  gsap.to(emoticon, {
-    duration: 2,
-    delay: 21.8,
-    ease: "slow(0.7, 0.7, false)",
-    x: 1040,
   });
 }
