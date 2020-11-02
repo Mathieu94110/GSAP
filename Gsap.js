@@ -8,12 +8,12 @@ function start(eyes, mouth) {
   console.log(eyes);
   let img1 = document.getElementById("img1");
   img1.src = eyes + ".png";
-  img1.style.visibility = "visible"; //
+  img1.style.visibility = "visible";
 
   let imgMouth = document.createElement("img");
   imgMouth.src = mouth + ".png";
   imgMouth.setAttribute("id", "img2");
-  imgMouth.style.position = "absolute";
+  imgMouth.style.position = "fixed";
   div.append(imgMouth);
 
   //saut de t'émoticon
@@ -53,7 +53,7 @@ function start(eyes, mouth) {
       ease: "none",
     });
 
-  //Mouvement du champignon
+  //Mouvement du
 
   //sequenced one-after-the-other
 
@@ -65,11 +65,11 @@ function start(eyes, mouth) {
         duration: 2,
       },
     })
-    .from("#champignon", {
+    .from("#mushroom", {
       duration: 0.2,
       rotation: -2,
     })
-    .to("#champignon", {
+    .to("#mushroom", {
       duration: 0.2,
       rotation: 2,
     });
@@ -110,7 +110,7 @@ function start(eyes, mouth) {
   gsap.to(emoticon, 1, { x: 485, y: 180, ease: "bounce", delay: 5 }); //quand elle tombe
 
   gsap.to(emoticon, 1, { x: 565, delay: 7 }); // il recupere les yeux
-  gsap.to(img1, 2, { y: 350, delay: 7 }); // les yeux se pose
+  gsap.to(img1, 2, { y: 345, delay: 7 }); // les yeux se pose
   gsap.to(emoticon, {
     duration: 2.5,
     x: 600,
@@ -151,12 +151,18 @@ function start(eyes, mouth) {
     x: 670,
     delay: 10.5,
   });
-  gsap.fromTo(
-    "#champignon",
-    { x: 0, y: 0 },
-    { rotation: 260, x: 450, y: -50, scale: 1.5, duration: 1.5, delay: 10.6 }
-  ); // Le champigonon s'éjecte
-  //TweenLite.to("#champigon", 12, {visibility: "hidden"} ,
+  /////////////
+
+  ///////////
+  gsap.to("#mushroom", 0.5, {
+    rotation: 70,
+    x: 800,
+    y: -50,
+    scale: 1.5,
+    duration: 1,
+    delay: 10.6,
+  });
+  gsap.to("#mushroom", 0.1, { visibility: "hidden", delay: 11.6 });
 
   // this code has the same effect
 
