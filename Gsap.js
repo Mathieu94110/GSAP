@@ -3,9 +3,13 @@ const conveyor = document.getElementById("conveyor");
 const arm = document.getElementById("arm");
 
 const emoticon = document.getElementById("emoticon");
+//duree de l'animation
+
+let timeOutID = setTimeout(start, 3000);
 
 function start(eyes, mouth) {
-  console.log(eyes);
+  //Recharge la page
+
   let img1 = document.getElementById("img1");
   img1.src = eyes + ".png";
   img1.style.visibility = "visible";
@@ -16,7 +20,7 @@ function start(eyes, mouth) {
   imgMouth.style.position = "fixed";
   div.append(imgMouth);
 
-  //saut de t'émoticon
+  //Rayon de la trajectoire du fantome
   let R = 200;
 
   //saut de Bowser
@@ -208,3 +212,24 @@ function start(eyes, mouth) {
     y: 355,
   });
 }
+
+// controlleurs audio
+
+emoHappySong = () => {
+  let song_container = (document.getElementById("audio_controller").innerHTML =
+    '<audio id="audio-player" controls="controls" autoplay="true" src="./songs/overworld_theme_super_mario_3d_land.mp3" type="audio/mpeg">');
+
+  song_container.play();
+};
+
+emoSadSong = () => {
+  let song_container = (document.getElementById("audio_controller").innerHTML =
+    '<audio id="audio-player" controls="controls" autoplay="true" src="./songs/a_farewell_to_kirby_kirby_star_allies_music_7922055104079329814.mp3" type="audio/mpeg">');
+  song_container.play();
+};
+
+emoGroupSong = () => {
+  let song_container = (document.getElementById("audio_controller").innerHTML =
+    '<audio id="audio-player" controls="controls" autoplay="true" src="./songs/metallic-mario-super-mario-64.mp3" type="audio/mpeg">');
+  song_container.play();
+};

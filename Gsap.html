@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
     <title>Gsap</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta   name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="Gsap.css">
 </head>
 
 <body>
     <div class="my_container">
+    
         <div class="quatreboutons">
-            <div>
-                <button id="play1" onclick="start('images/tongue_eyes','images/tongue_mouth')">emo-tongue</button>
-                <button id="play2" onclick="start('images/happy_eyes','images/happy_mouth' )">emo-happy</button></div>
-            <div> <button id="play3" onclick="start('./images/sad_eyes','images/sad_mouth')">emo-sad</button>
-                <button id="play4" onclick="start('images/in-love_eyes','images/in-love_mouth')">emo-in-love</button>
-            </div>
+      
+<div class="button-wrapper" onclick="start('images/happy_eyes','images/happy_mouth');emoHappySong()"><a class="background-button" href="#" title="Emo-Content"></a></div>
+<div class="button-wrapper" onclick="start('./images/sad_eyes','images/sad_mouth');emoSadSong()"><a class="background-button" href="#" title="Emo-Triste"></a></div>
+<div class="button-wrapper" onclick="start('images/tongue_eyes','images/tongue_mouth');emoGroupSong()"><a class="background-button"
+href="#" title="Emo-Groupe"></a></div>
+  
         </div>
+<div id="audio_controller">
+ 
+</div>
+
+
+ 
+
+
 
         <div class="machinearticule" id="div">
             <img class="bras" src="./images/conveyor_base.png">
@@ -43,10 +52,16 @@
         </div>
 
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="./Gsap.js"></script>
+    <script>
+
+
+    </script>
 </body>
 
 </html>
