@@ -13,43 +13,34 @@ gsap.from("#my-button", {
   xPercent: 100,
   ease: "bounce",
 });
-gsap.defaults({
-  // enlever ces 3 lignes inutiles
-  delay: 6,
-});
-gsap.fromTo(
-  "#emoticons1",
-  {
-    rotation: 360,
-    duration: 3,
-    ease: "elastic",
-  },
-  {
-    rotation: -360,
-    duration: 3,
-    ease: "none",
-    repeat: -1,
-  }
-); /*
-gsap.fromTo(
-  "#emoticons2",
-  {
-    rotation: -360,
-  },
-  {
-    rotation: 720,
-    duration: 2,
-  }
-);*/
+/*color title by letter soon
+var colors = ["red", "green", "blue", "orange", "#f60", "yellow"];
+// une couleur au hasard = colors[Math.floor(Math.random() * colors.length)];
 
-/*
-gsap.to("#emoticons1", {
-  rotation: 180,
+ CHANGEMENT DE COULEUR DE FOND 
+TweenLite.set("title", {
+  color: function () {
+    const content = document.getElementById("title").textContent;
+    const worddivided = content.split("");
+    worddivided.map((letter) => {
+      return letter.style.colors[Math.floor(Math.random() * colors.length)];
+    });
+  },
+});
+
+*/
+let tl = new TimelineMax({ repeat: -1, delay: 7 });
+tl.to("#emoticons1", {
+  rotation: 720,
   duration: 3,
-  ease: "elastic",
-});*/
-/////////////////////////////
-var tl1 = new TimelineMax({ repeat: -1 });
+  ease: "back",
+}).to("#emoticons1", {
+  rotation: 0,
+  duration: 3,
+  ease: "back",
+});
+
+let tl1 = new TimelineMax({ repeat: -1, delay: 7 });
 tl1
   .to("#emoticons2", 1, {
     rotation: -360,
@@ -65,9 +56,10 @@ tl1
   });
 
 ///////////////////////////////////////
-var tl2 = new TimelineMax({ repeat: -1 });
+var tl2 = new TimelineMax({ repeat: -1, delay: 6 });
 tl2
   .to("#emoticons3", {
+    delay: 1,
     duration: 0.5,
     y: -100,
   })
@@ -79,44 +71,44 @@ tl2
   })
   .to("#emoticons3", {
     rotation: -20,
-    duration: 0.2,
+    duration: 0.8,
     ease: "none",
   })
   .to("#emoticons3", {
-    rotation: 20,
-    duration: 0.2,
+    rotation: 15,
+    duration: 0.8,
     ease: "none",
   });
 /////////////////////////////////////
-let tl3 = new TimelineMax({ repeat: -1 });
+let tl3 = new TimelineMax({ repeat: -1, delay: 7 });
 tl3
   .to("#emoticons4", {
     duration: 2,
-    y: -150,
-    scale: 1.3,
+    y: -100,
+    scale: 1.2,
   })
   .to("#emoticons4", {
     y: 0,
     scale: 1,
   });
 //////////////////////////////
-let tl4 = new TimelineMax({ repeat: -1 });
+let tl4 = new TimelineMax({ repeat: -1, delay: 7 });
 tl4
-  .to("#emoticons5", 0.75, {
-    y: -150,
+  .to("#emoticons5", {
+    y: -100,
     ease: Circ.easeOut,
     yoyo: true,
     repeat: 1,
   })
   .to("#emoticons5", {
     transformOrigin: "50% 100%",
-    delay: 9,
+
     scaleY: 0.35,
     yoyo: true,
     repeat: 1,
   });
 //////////////
-let tl5 = new TimelineMax({ repeat: -1 });
+let tl5 = new TimelineMax({ repeat: -1, delay: 7 });
 tl5
   .to("#emoticons6", 0.75, {
     y: -100,
