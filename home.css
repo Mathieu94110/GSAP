@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -13,32 +12,49 @@ body {
 }
 #my-wrapper {
   height: 100%;
-  overflow: hidden;
-  position: relative;
+  width: 100%;
+}
+#my-button {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+#start-button {
+  width: 25%;
+  height: 30px;
 }
 #title-container {
-  height: 50%;
+  height: 40%;
   display: flex;
-
+  flex-direction: column;
+  font-size: 4vw;
   justify-content: center;
-  align-items: center;
-  height: 50%;
 }
 #title {
   margin: 0;
-  position: absolute;
+  font-family: Impact, Charcoal, sans-serif;
+
   top: 120px;
-  left: 40px;
+  text-align: center;
 }
 #emotis-container {
+  margin: 0 5%;
   display: flex;
-
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 50%;
+  height: 40%;
+  list-style: none;
 }
 
-#emoticons {
+#emoticons1,
+#emoticons2,
+#emoticons3,
+#emoticons4,
+#emoticons5,
+#emoticons6 {
   width: 150px;
   height: 150px;
 }

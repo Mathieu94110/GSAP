@@ -8,6 +8,9 @@ const emoticon = document.getElementById("emoticon");
 let timeOutID = setTimeout(start, 3000);
 
 function start(eyes, mouth) {
+  var count = 0;
+  var intId = setInterval(() => {}, interval);
+
   //Recharge la page
 
   let img1 = document.getElementById("img1");
