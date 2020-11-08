@@ -1,69 +1,87 @@
+// identification de la grue et de l'émoticon
 const conveyor = document.getElementById("conveyor");
-
 const arm = document.getElementById("arm");
-
 const emoticon = document.getElementById("emoticon");
 //duree de l'animation
 
-let timeOutID = setTimeout(start, 3000);
+function start() {
+  ///Vol aléatoire de Bowser
 
-function start(eyes, mouth) {
-  var count = 0;
-  var intId = setInterval(() => {}, interval);
+  var width = $("#div").width();
+  var height = $("#div").height();
+  var dx = width * 0.9;
+  var dy = height * 0.9;
 
-  //Recharge la page
+  function tweenProperty(target, prop, min, max) {
+    TweenLite.to(target, random(3, 6), {
+      [prop]: random(min, max),
+      ease: Sine.easeInOut,
+      rotation: random(-45, 45),
+      onComplete: tweenProperty,
+      onCompleteParams: [target, prop, min, max],
+    });
+  }
 
-  let img1 = document.getElementById("img1");
-  img1.src = eyes + ".png";
-  img1.style.visibility = "visible";
+  function random(min, max) {
+    return Math.floor(Math.random() * (1 + max - min) + min);
+  }
 
-  let imgMouth = document.createElement("img");
-  imgMouth.src = mouth + ".png";
-  imgMouth.setAttribute("id", "img2");
-  imgMouth.style.position = "fixed";
-  div.append(imgMouth);
+  tweenProperty("#bowser", "scale", 0.9, 1);
+  tweenProperty("#bowser", "x", -dx, dx);
+  tweenProperty("#bowser", "y", -dy, dy);
+  /////////////////////////////////////////////////
 
   //Rayon de la trajectoire du fantome
   let R = 200;
 
-  //saut de Bowser
+  //Mouvements des murs
 
   gsap
     .timeline({
       repeat: -1,
-      yoyo: true,
-      defaults: {
-        duration: 2,
-      },
     })
-    .to("#bowser", {
-      y: 187,
-      scale: 1.1,
-      ease: "bounce",
-    });
-
-  //
-
-  // mvt du mur
-
-  gsap
-    .timeline({
-      repeat: -1,
-      yoyo: true,
-      defaults: {
-        duration: 1.5,
-      },
-    })
-    .to("#thwomp", {
-      y: 210,
-      scale: 1.1,
+    .to("#thwomp_one", {
+      y: 0,
+      duration: 0.5,
       ease: "none",
+    })
+    .to("#thwomp_one", {
+      y: -150,
+      duration: 3,
+      ease: SteppedEase.config(4),
     });
-
-  //Mouvement du
-
-  //sequenced one-after-the-other
-
+  gsap
+    .timeline({
+      repeat: -1,
+      delay: 1,
+    })
+    .to("#thwomp_two", {
+      y: 0,
+      duration: 0.5,
+      ease: "none",
+    })
+    .to("#thwomp_two", {
+      y: -150,
+      duration: 3,
+      ease: SteppedEase.config(4),
+    });
+  gsap
+    .timeline({
+      repeat: -1,
+      delay: 1.5,
+    })
+    .to("#thwomp_three", {
+      y: 0,
+      duration: 0.5,
+      ease: "none",
+    })
+    .to("#thwomp_three", {
+      y: -150,
+      duration: 3,
+      ease: SteppedEase.config(4),
+    });
+  ///////////////////////////
+  /////////////////champignon
   gsap
     .timeline({
       repeat: -1,
@@ -80,9 +98,9 @@ function start(eyes, mouth) {
       duration: 0.2,
       rotation: 2,
     });
-
+  //////////////////////
   //Mouvement du fantome
-  TweenMax.to("#gost", 6, {
+  TweenMax.to("#ghost", 6, {
     bezier: {
       curviness: 1.5,
       values: [
@@ -99,10 +117,7 @@ function start(eyes, mouth) {
     repeat: -1,
   });
 
-  //
-
-  let e = document.getElementById("img1");
-  gsap.to(e, { x: 0, y: 10 });
+  ///////////////////////
 
   gsap.to(conveyor, 2, { marginLeft: 140, delay: 2 });
   gsap.to(arm, 2, { marginLeft: 140, delay: 2 });
@@ -117,41 +132,18 @@ function start(eyes, mouth) {
   gsap.to(emoticon, 1, { x: 485, y: 180, ease: "bounce", delay: 5 }); //quand elle tombe
 
   gsap.to(emoticon, 1, { x: 565, delay: 7 }); // il recupere les yeux
-  gsap.to(img1, 2, { y: 345, delay: 7 }); // les yeux se pose
+  /*gsap.to(img1, 2, { y: 345, delay: 7 }); // les yeux se pose */
   gsap.to(emoticon, {
     duration: 2.5,
     x: 600,
     delay: 9,
     ease: "elastic.out(1, 0.3)",
-  }); // Il se prend le champigon et recule
-
-  ////////////////////////////////////////
-  gsap.to(img1, {
-    duration: 2.5,
-    x: 35, ////
-    delay: 9,
-    ease: "elastic.out(1, 0.3)",
-  }); // Il se prend le champigon et recule
-  ////////////////////////////////////////
-  gsap.to(img1, {
-    ////oeil prend son elan
-    duration: 0.5,
-    x: -85,
-    delay: 10,
   });
   gsap.to(emoticon, {
     duration: 0.5,
     x: 485,
     delay: 10,
-  }); // Emoticon PREND SON 2LAN
-  gsap.to(img1, {
-    /////oeil met coup de tete
-    duration: 0.3,
-    x: 90,
-    delay: 10.5,
   });
-
-  ////////////////////////////////////
   gsap.to(emoticon, {
     ////// Emoticon met coup de tete
     duration: 0.3,
@@ -180,39 +172,41 @@ function start(eyes, mouth) {
     x: 750,
     delay: 11.8,
   });
-  gsap.to(img1, {
-    /////oeil ...
-    duration: 2, ////////////////////////////
-    x: 180,
-    delay: 11.8,
-  });
+
   gsap.to(emoticon, {
-    ////// tete saute
     duration: 0.5,
     delay: 13.8,
     x: 990,
   });
-
-  TweenMax.set("img1", { xPercent: "-50%", yPercent: "-50%" });
+  /*
+  TweenMax.set(emoticon, { xPercent: "-50%", yPercent: "-50%" });
   tl = new TimelineMax();
-  tl.to("#img1", 0.5, { rotation: 360, x: 440, delay: 13.8 });
+  tl.to(emoticon, 0.5, { rotation: 360, x: 440, delay: 14.3 });
 
   gsap.to(emoticon, {
     duration: 2,
     delay: 14.3,
     ease: "slow(0.7, 0.7, false)",
     x: 1070,
-  });
-  gsap.to(img1, {
+  }); // test du saut
+  var tl = new TimelineLite({ delay: 16.8 });
+  tl.to(emoticon, 0.5, { y: 0 })
+    .to(emoticon, 1.25, { y: 350, ease: Bounce.easeOut })
+    .to(emoticon, 2.5, { x: "+=50" }, "-=1.75")
+    .to(
+      emoticon,
+      1,
+      {
+        x: 0,
+      },
+      "+=1"
+    );*/
+
+  gsap.to("#roquette", {
     duration: 2,
     delay: 14.3,
-    ease: "slow(0.7, 0.7, false)",
-    x: 500,
-  });
-  gsap.to(img2, {
-    duration: 2,
-    delay: 15.8,
-    y: 355,
+    ease: "power(1)",
+    x: -600,
   });
 }
 
