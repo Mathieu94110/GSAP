@@ -135,7 +135,7 @@ function start() {
   /*gsap.to(img1, 2, { y: 345, delay: 7 }); // les yeux se pose */
   gsap.to(emoticon, {
     duration: 2.5,
-    x: 600,
+    x: 580,
     delay: 9,
     ease: "elastic.out(1, 0.3)",
   });
@@ -147,7 +147,7 @@ function start() {
   gsap.to(emoticon, {
     ////// Emoticon met coup de tete
     duration: 0.3,
-    x: 670,
+    x: 600,
     delay: 10.5,
   });
   /////////////
@@ -206,7 +206,21 @@ function start() {
     duration: 2,
     delay: 14.3,
     ease: "power(1)",
-    x: -600,
+    x: -770,
+  });
+  gsap.to("#roquette", {
+    duration: 2,
+    delay: 16,
+    visibility: "hidden",
+  });
+  gsap.to(".explosif_container", {
+    duration: 2,
+    delay: 16.3,
+    visibility: "visible",
+  });
+  gsap.to(".explosif_container", {
+    delay: 18.3,
+    visibility: "hidden",
   });
 }
 
