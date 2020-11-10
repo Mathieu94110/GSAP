@@ -88,34 +88,17 @@ function start() {
       yoyo: true,
       defaults: {
         duration: 2,
+        autoAlpha: 1,
       },
     })
-    .from("#mushroom", {
+    .from("#mushroom-box", {
       duration: 0.2,
       rotation: -2,
     })
-    .to("#mushroom", {
+    .to("#mushroom-box", {
       duration: 0.2,
       rotation: 2,
     });
-  //////////////////////
-  //Mouvement du fantome
-  TweenMax.to("#ghost", 6, {
-    bezier: {
-      curviness: 1.5,
-      values: [
-        { x: 0, y: 0 },
-        { x: R / 2, y: R / 2 },
-        { x: 0, y: R },
-        { x: -R / 2, y: R / 2 },
-        { x: 0, y: 0 },
-      ],
-    },
-
-    rotation: 720,
-    ease: Power0.easeNone,
-    repeat: -1,
-  });
 
   ///////////////////////
 
@@ -131,8 +114,8 @@ function start() {
   gsap.to(emoticon, 2, { x: 485, y: 20, delay: 2 });
   gsap.to(emoticon, 1, { x: 485, y: 180, ease: "bounce", delay: 5 }); //quand elle tombe
 
-  gsap.to(emoticon, 1, { x: 565, delay: 7 }); // il recupere les yeux
-  /*gsap.to(img1, 2, { y: 345, delay: 7 }); // les yeux se pose */
+  gsap.to(emoticon, 1, { x: 565, delay: 7 });
+
   gsap.to(emoticon, {
     duration: 2.5,
     x: 580,
@@ -153,14 +136,16 @@ function start() {
   /////////////
 
   ///////////
-  gsap.to("#mushroom", 0.5, {
-    rotation: 70,
+
+  gsap.set("#mushroom", { xPercent: "-50%", yPercent: "-50%", autoAlpha: 1 });
+  tl = new TimelineMax();
+  tl.to("#mushroom-box", 2, {
+    rotation: 360,
     x: 800,
-    y: -50,
-    scale: 1.5,
-    duration: 1,
+    y: 150,
     delay: 10.6,
   });
+
   gsap.to("#mushroom", 0.1, { visibility: "hidden", delay: 11.6 });
 
   // this code has the same effect
@@ -178,8 +163,9 @@ function start() {
     delay: 13.8,
     x: 990,
   });
+
   /*
-  TweenMax.set(emoticon, { xPercent: "-50%", yPercent: "-50%" });
+  gsap.set(emoticon, { xPercent: "-50%", yPercent: "-50%" });
   tl = new TimelineMax();
   tl.to(emoticon, 0.5, { rotation: 360, x: 440, delay: 14.3 });
 
@@ -188,19 +174,11 @@ function start() {
     delay: 14.3,
     ease: "slow(0.7, 0.7, false)",
     x: 1070,
-  }); // test du saut
+  }); // test du saut*/
   var tl = new TimelineLite({ delay: 16.8 });
-  tl.to(emoticon, 0.5, { y: 0 })
-    .to(emoticon, 1.25, { y: 350, ease: Bounce.easeOut })
-    .to(emoticon, 2.5, { x: "+=50" }, "-=1.75")
-    .to(
-      emoticon,
-      1,
-      {
-        x: 0,
-      },
-      "+=1"
-    );*/
+  tl.to(emoticon, { y: 0 })
+    .to(emoticon, 0.5, { y: 500, ease: "none" })
+    .to(emoticon, 2.5, { x: "+=650" }, "-=1.75");
 
   gsap.to("#roquette", {
     duration: 2,
@@ -216,13 +194,106 @@ function start() {
   gsap.to(".explosif_container", {
     duration: 2,
     delay: 16.3,
-    visibility: "visible",
+    autoAlpha: 1, //autoalpha est indiqué pour un gain de performances
   });
   gsap.to(".explosif_container", {
     delay: 18.3,
-    visibility: "hidden",
+    autoAlpha: 0,
   });
 }
+
+//roues
+
+var R = 290,
+  dur = 7,
+  totalCount = 3,
+  Ease = Linear.easeNone;
+
+var tl = new TimelineLite()
+  .to(
+    ".whell_one",
+    dur,
+    {
+      bezier: {
+        curviness: 1.5,
+        values: [
+          { x: 0, y: 0 },
+          { x: R / 2, y: R / 2 },
+          { x: 0, y: R },
+          { x: -R / 2, y: R / 2 },
+          { x: 0, y: 0 },
+        ],
+      },
+      rotation: 320,
+      repeat: -1,
+      ease: Ease,
+      transformOrigin: "center",
+    },
+    dur / totalCount
+  )
+  .to(
+    ".whell_one",
+    dur * 2,
+    { rotation: -360, ease: Power0.easeNone, repeat: -1 },
+    0
+  )
+  .time(dur)
+  .to(
+    ".whell_two",
+    dur,
+    {
+      bezier: {
+        curviness: 1.5,
+        values: [
+          { x: 0, y: 0 },
+          { x: R / 2, y: R / 2 },
+          { x: 0, y: R },
+          { x: -R / 2, y: R / 2 },
+          { x: 0, y: 0 },
+        ],
+      },
+      rotation: -900,
+      repeat: -1,
+      ease: Ease,
+      transformOrigin: "center",
+    },
+    dur / totalCount
+  )
+  .to(
+    ".whell_two",
+    dur * 2,
+    { rotation: -360, ease: Power0.easeNone, repeat: -1 },
+    0
+  )
+  .time(dur)
+  .to(
+    ".whell_three",
+    dur,
+    {
+      bezier: {
+        curviness: 1.5,
+        values: [
+          { x: 0, y: 0 },
+          { x: R / 2, y: R / 2 },
+          { x: 0, y: R },
+          { x: -R / 2, y: R / 2 },
+          { x: 0, y: 0 },
+        ],
+      },
+      rotation: 320,
+      repeat: -1,
+      ease: Ease,
+      transformOrigin: "center",
+    },
+    dur / totalCount
+  )
+  .to(
+    ".whell_three",
+    dur * 2,
+    { rotation: -360, ease: Power0.easeNone, repeat: -1 },
+    0
+  )
+  .time(dur);
 
 // controlleurs audio
 
