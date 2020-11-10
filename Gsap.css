@@ -116,6 +116,7 @@ body {
   height: 40%;
   position: fixed;
   bottom: 0;
+  z-index: 2;
 }
 #roquette {
   height: auto;
@@ -139,12 +140,14 @@ body {
   height: 40%;
   position: fixed;
   bottom: 0;
+  z-index: 2;
 }
 #emoticon {
   padding-top: 160px;
   position: fixed;
   height: 60px;
   width: 60px;
+  z-index: 1;
 }
 /*Design des bouttons */
 
@@ -330,6 +333,7 @@ a.background-button:hover:after {
   left: 400px;
   bottom: 0;
   visibility: hidden;
+  z-index: 3;
 }
 
 .explosif_container span {

@@ -1,10 +1,9 @@
 // identification de la grue et de l'émoticon
 const conveyor = document.getElementById("conveyor");
 const arm = document.getElementById("arm");
-const emoticon = document.getElementById("emoticon");
-//duree de l'animation
+//const emoticon = document.getElementById("emoticon");
 
-function start() {
+basics_animations = () => {
   ///Vol aléatoire de Bowser
 
   var width = $("#div").width();
@@ -29,12 +28,6 @@ function start() {
   tweenProperty("#bowser", "scale", 0.9, 1);
   tweenProperty("#bowser", "x", -dx, dx);
   tweenProperty("#bowser", "y", -dy, dy);
-  /////////////////////////////////////////////////
-
-  //Rayon de la trajectoire du fantome
-  let R = 200;
-
-  //Mouvements des murs
 
   gsap
     .timeline({
@@ -104,12 +97,136 @@ function start() {
 
   gsap.to(conveyor, 2, { marginLeft: 140, delay: 2 });
   gsap.to(arm, 2, { marginLeft: 140, delay: 2 });
+
+  gsap.to("#roquette", {
+    duration: 2,
+    delay: 14.5,
+    ease: "power(1)",
+    x: -770,
+  });
+  gsap.to("#roquette", {
+    duration: 2,
+    delay: 16.5,
+    visibility: "hidden",
+  });
+  gsap.to(".explosif_container", {
+    duration: 2,
+    delay: 16.8,
+    autoAlpha: 1, //autoalpha est indiqué pour un gain de performances
+  });
+  gsap.to(".explosif_container", {
+    delay: 18.8,
+    autoAlpha: 0,
+  });
+
+  //roues
+
+  var R = 290,
+    dur = 7,
+    totalCount = 3,
+    Ease = Linear.easeNone;
+
+  var tl = new TimelineLite()
+    .to(
+      ".whell_one",
+      dur,
+      {
+        bezier: {
+          curviness: 1.5,
+          values: [
+            { x: 0, y: 0 },
+            { x: R / 2, y: R / 2 },
+            { x: 0, y: R },
+            { x: -R / 2, y: R / 2 },
+            { x: 0, y: 0 },
+          ],
+        },
+        rotation: 320,
+        repeat: -1,
+        ease: Ease,
+        transformOrigin: "center",
+      },
+      dur / totalCount
+    )
+    .to(
+      ".whell_one",
+      dur * 2,
+      { rotation: -360, ease: Power0.easeNone, repeat: -1 },
+      0
+    )
+    .time(dur)
+    .to(
+      ".whell_two",
+      dur,
+      {
+        bezier: {
+          curviness: 1.5,
+          values: [
+            { x: 0, y: 0 },
+            { x: R / 2, y: R / 2 },
+            { x: 0, y: R },
+            { x: -R / 2, y: R / 2 },
+            { x: 0, y: 0 },
+          ],
+        },
+        rotation: -900,
+        repeat: -1,
+        ease: Ease,
+        transformOrigin: "center",
+      },
+      dur / totalCount
+    )
+    .to(
+      ".whell_two",
+      dur * 2,
+      { rotation: -360, ease: Power0.easeNone, repeat: -1 },
+      0
+    )
+    .time(dur)
+    .to(
+      ".whell_three",
+      dur,
+      {
+        bezier: {
+          curviness: 1.5,
+          values: [
+            { x: 0, y: 0 },
+            { x: R / 2, y: R / 2 },
+            { x: 0, y: R },
+            { x: -R / 2, y: R / 2 },
+            { x: 0, y: 0 },
+          ],
+        },
+        rotation: 320,
+        repeat: -1,
+        ease: Ease,
+        transformOrigin: "center",
+      },
+      dur / totalCount
+    )
+    .to(
+      ".whell_three",
+      dur * 2,
+      { rotation: -360, ease: Power0.easeNone, repeat: -1 },
+      0
+    )
+    .time(dur);
+};
+
+start_emo_content = () => {
+  basics_animations();
+
+  const emoticon = document.createElement("img");
+  emoticon.src = "./images/emoticon1" + ".png";
+  emoticon.setAttribute("id", "emoticon");
+  div.append(emoticon);
+
   gsap.to(emoticon, { x: 345, y: 50 });
 
   gsap.fromTo(
     emoticon,
-    { x: 345, y: 400, opacity: 0 },
-    { y: 20, duration: 2, opacity: 1, ease: "power3.out" }
+    { x: 345, y: 400 },
+    { y: 20, duration: 2, ease: "power3.out" }
   );
   gsap.to(emoticon, 2, { x: 485, y: 20, delay: 2 });
   gsap.to(emoticon, 1, { x: 485, y: 180, ease: "bounce", delay: 5 }); //quand elle tombe
@@ -164,136 +281,55 @@ function start() {
     x: 990,
   });
 
-  /*
-  gsap.set(emoticon, { xPercent: "-50%", yPercent: "-50%" });
-  tl = new TimelineMax();
-  tl.to(emoticon, 0.5, { rotation: 360, x: 440, delay: 14.3 });
+  /////////////////////
 
-  gsap.to(emoticon, {
-    duration: 2,
-    delay: 14.3,
-    ease: "slow(0.7, 0.7, false)",
-    x: 1070,
-  }); // test du saut*/
-  var tl = new TimelineLite({ delay: 16.8 });
-  tl.to(emoticon, { y: 0 })
-    .to(emoticon, 0.5, { y: 500, ease: "none" })
-    .to(emoticon, 2.5, { x: "+=650" }, "-=1.75");
+  var tl = new TimelineLite({ delay: 14.5 });
+  tl.to(emoticon, 0.5, { y: 0 })
+    .to(emoticon, 1.25, { y: 25, ease: Power1.easeInOut })
+    .to(emoticon, 1.75, { x: "+=344" }, "-=1.75")
+    .to(emoticon, 1.5, { delay: 2.5, y: 100 });
+  ///////////////////
+};
+start_emo_triste = () => {
+  basics_animations();
+  const emoticon = document.createElement("img");
+  emoticon.src = "./images/emoticon3" + ".png";
+  emoticon.setAttribute("id", "emoticon");
+  div.append(emoticon);
+  gsap.fromTo(
+    emoticon,
+    { x: 345, y: 400 },
+    { y: 20, duration: 2, ease: "power3.out" }
+  ); /*
+  gsap.fromTo(
+    emoticon,
+    { y: 20, ease: "power3.out" },
+    { y: -100, duration: 1, ease: "power3.out", yoyo: true }
+  );*/
+  var tl = new TimelineMax({
+    transformOrigin: "center top",
+    delay: 4,
+    repeat: -1,
+  })
+    .to(emoticon, 0.2, { rotation: "+=10" })
+    .to(emoticon, 0.2, { rotation: "-=20", delay: 0.3 })
+    .to(emoticon, 0.2, { rotation: "+=15", delay: 0.5 })
+    .to(emoticon, 0.2, { rotation: "-=8", delay: 0.7 })
+    .to(emoticon, 0.2, { rotation: "+=3", delay: 0.9 });
 
-  gsap.to("#roquette", {
-    duration: 2,
-    delay: 14.3,
-    ease: "power(1)",
-    x: -770,
-  });
-  gsap.to("#roquette", {
-    duration: 2,
-    delay: 16,
-    visibility: "hidden",
-  });
-  gsap.to(".explosif_container", {
-    duration: 2,
-    delay: 16.3,
-    autoAlpha: 1, //autoalpha est indiqué pour un gain de performances
-  });
-  gsap.to(".explosif_container", {
-    delay: 18.3,
-    autoAlpha: 0,
-  });
-}
+  var tl = new TimelineLite({ delay: 4 });
+  tl.to(emoticon, 0.5, { y: 0 })
+    .to(emoticon, 1.25, { y: 100, ease: Power1.easeInOut })
+    .to(emoticon, 1.75, { x: "+=270" }, "-=1.75");
+};
 
-//roues
-
-var R = 290,
-  dur = 7,
-  totalCount = 3,
-  Ease = Linear.easeNone;
-
-var tl = new TimelineLite()
-  .to(
-    ".whell_one",
-    dur,
-    {
-      bezier: {
-        curviness: 1.5,
-        values: [
-          { x: 0, y: 0 },
-          { x: R / 2, y: R / 2 },
-          { x: 0, y: R },
-          { x: -R / 2, y: R / 2 },
-          { x: 0, y: 0 },
-        ],
-      },
-      rotation: 320,
-      repeat: -1,
-      ease: Ease,
-      transformOrigin: "center",
-    },
-    dur / totalCount
-  )
-  .to(
-    ".whell_one",
-    dur * 2,
-    { rotation: -360, ease: Power0.easeNone, repeat: -1 },
-    0
-  )
-  .time(dur)
-  .to(
-    ".whell_two",
-    dur,
-    {
-      bezier: {
-        curviness: 1.5,
-        values: [
-          { x: 0, y: 0 },
-          { x: R / 2, y: R / 2 },
-          { x: 0, y: R },
-          { x: -R / 2, y: R / 2 },
-          { x: 0, y: 0 },
-        ],
-      },
-      rotation: -900,
-      repeat: -1,
-      ease: Ease,
-      transformOrigin: "center",
-    },
-    dur / totalCount
-  )
-  .to(
-    ".whell_two",
-    dur * 2,
-    { rotation: -360, ease: Power0.easeNone, repeat: -1 },
-    0
-  )
-  .time(dur)
-  .to(
-    ".whell_three",
-    dur,
-    {
-      bezier: {
-        curviness: 1.5,
-        values: [
-          { x: 0, y: 0 },
-          { x: R / 2, y: R / 2 },
-          { x: 0, y: R },
-          { x: -R / 2, y: R / 2 },
-          { x: 0, y: 0 },
-        ],
-      },
-      rotation: 320,
-      repeat: -1,
-      ease: Ease,
-      transformOrigin: "center",
-    },
-    dur / totalCount
-  )
-  .to(
-    ".whell_three",
-    dur * 2,
-    { rotation: -360, ease: Power0.easeNone, repeat: -1 },
-    0
-  )
-  .time(dur);
+start_emo_group = () => {
+  basics_animations();
+  const emoticon = document.createElement("img");
+  emoticon.src = "./images/emoticon3" + ".png";
+  emoticon.setAttribute("id", "emoticon");
+  div.append(emoticon);
+};
 
 // controlleurs audio
 
