@@ -292,37 +292,42 @@ start_emo_content = () => {
 };
 start_emo_triste = () => {
   basics_animations();
-  const emoticon = document.createElement("img");
-  emoticon.src = "./images/emoticon3" + ".png";
-  emoticon.setAttribute("id", "emoticon");
-  div.append(emoticon);
+  const emoticon = document.getElementById("emoticon");
+
   gsap.fromTo(
     emoticon,
-    { x: 345, y: 400 },
+    { x: 345, y: 400, delay: 0 },
     { y: 20, duration: 2, ease: "power3.out" }
-  ); /*
-  gsap.fromTo(
-    emoticon,
-    { y: 20, ease: "power3.out" },
-    { y: -100, duration: 1, ease: "power3.out", yoyo: true }
-  );*/
+  );
+  gsap.to(emoticon, { delay: 2, duration: 0.5, y: -20, repeat: 1, yoyo: true });
   var tl = new TimelineMax({
     transformOrigin: "center top",
-    delay: 4,
+    delay: 2,
     repeat: -1,
   })
     .to(emoticon, 0.2, { rotation: "+=10" })
     .to(emoticon, 0.2, { rotation: "-=20", delay: 0.3 })
     .to(emoticon, 0.2, { rotation: "+=15", delay: 0.5 })
-    .to(emoticon, 0.2, { rotation: "-=8", delay: 0.7 })
-    .to(emoticon, 0.2, { rotation: "+=3", delay: 0.9 });
+    .to(emoticon, 0.2, { rotation: "-=8", delay: 0.7 });
 
-  var tl = new TimelineLite({ delay: 4 });
+  var tl = new TimelineMax({ delay: 4 });
   tl.to(emoticon, 0.5, { y: 0 })
     .to(emoticon, 1.25, { y: 100, ease: Power1.easeInOut })
-    .to(emoticon, 1.75, { x: "+=270" }, "-=1.75");
+    .to(emoticon, 1.75, { x: "+=270" }, "-=1.75")
+    .to(
+      "#mushroom",
+      0.15,
+      {
+        //ecrasement du champignon
+        transformOrigin: "100% 100%",
+        scaleX: 1,
+        scaleY: 0.2,
+        ease: Power1.easeInOut,
+        //ease: Bounce.easeOut
+      },
+      "bounce3-=0.04"
+    );
 };
-
 start_emo_group = () => {
   basics_animations();
   const emoticon = document.createElement("img");

@@ -149,6 +149,12 @@ body {
   width: 60px;
   z-index: 1;
 }
+#emotibox {
+  position: fixed;
+  background-color: none;
+
+  display: block;
+}
 /*Design des bouttons */
 
 a {
