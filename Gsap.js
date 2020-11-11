@@ -98,27 +98,6 @@ basics_animations = () => {
   gsap.to(conveyor, 2, { marginLeft: 140, delay: 2 });
   gsap.to(arm, 2, { marginLeft: 140, delay: 2 });
 
-  gsap.to("#roquette", {
-    duration: 2,
-    delay: 14.5,
-    ease: "power(1)",
-    x: -770,
-  });
-  gsap.to("#roquette", {
-    duration: 2,
-    delay: 16.5,
-    visibility: "hidden",
-  });
-  gsap.to(".explosif_container", {
-    duration: 2,
-    delay: 16.8,
-    autoAlpha: 1, //autoalpha est indiqué pour un gain de performances
-  });
-  gsap.to(".explosif_container", {
-    delay: 18.8,
-    autoAlpha: 0,
-  });
-
   //roues
 
   var R = 290,
@@ -215,6 +194,8 @@ basics_animations = () => {
 
 start_emo_content = () => {
   basics_animations();
+  //cache de l'emoticon_hungry sur le coté
+  document.getElementById("emoticon_hungry").style.visibility = "hidden";
 
   const emoticon = document.createElement("img");
   emoticon.src = "./images/emoticon1" + ".png";
@@ -282,6 +263,27 @@ start_emo_content = () => {
   });
 
   /////////////////////
+  gsap.to("#roquette", {
+    duration: 2,
+    delay: 14.5,
+    ease: "power(1)",
+    x: -770,
+  });
+  gsap.to("#roquette", {
+    duration: 2,
+    delay: 16.5,
+    visibility: "hidden",
+  });
+  gsap.to(".explosif_container", {
+    duration: 2,
+    delay: 16.8,
+    autoAlpha: 1, //autoalpha est indiqué pour un gain de performances
+  });
+  gsap.to(".explosif_container", {
+    delay: 18.8,
+    autoAlpha: 0,
+  });
+  //////////////////
 
   var tl = new TimelineLite({ delay: 14.5 });
   tl.to(emoticon, 0.5, { y: 0 })
@@ -290,43 +292,115 @@ start_emo_content = () => {
     .to(emoticon, 1.5, { delay: 2.5, y: 100 });
   ///////////////////
 };
-start_emo_triste = () => {
+start_emo_hungry = () => {
+  /* test faire rougir l'émoti
+  const app = new PIXI.Application({}); //retirer{}peutetre
+  app.style = document.body.style;
+
+  document.body.appendChild(app.view);
+  const texture = PIXI.Texture.from("examples/assets/pacman_two.png");
+  // time animation in seconds
+  const time = 2.0;
+
+  const bunny1 = new PIXI.Sprite(texture);
+  bunny1.scale.set(3.0, 3.0);
+  bunny1.anchor.set(0.5, 0.5);
+  bunny1.x = app.screen.width / 4;
+  bunny1.y = app.screen.height / 2;
+
+  app.stage.addChild(bunny1);
+
+  gsap.to(bunny1, {
+    pixi: { tint: "red" },
+    duration: time,
+    repeat: -1,
+    yoyo: true,
+  });
+  */
   basics_animations();
-  const emoticon = document.getElementById("emoticon");
+  const emoticon_hungry = document.getElementById("emoticon_hungry");
 
   gsap.fromTo(
-    emoticon,
+    emoticon_hungry,
     { x: 345, y: 400, delay: 0 },
     { y: 20, duration: 2, ease: "power3.out" }
   );
-  gsap.to(emoticon, { delay: 2, duration: 0.5, y: -20, repeat: 1, yoyo: true });
+  gsap.to(emoticon_hungry, {
+    delay: 2,
+    duration: 0.5,
+    y: -20,
+    repeat: 1,
+    yoyo: true,
+  });
   var tl = new TimelineMax({
     transformOrigin: "center top",
     delay: 2,
     repeat: -1,
   })
-    .to(emoticon, 0.2, { rotation: "+=10" })
-    .to(emoticon, 0.2, { rotation: "-=20", delay: 0.3 })
-    .to(emoticon, 0.2, { rotation: "+=15", delay: 0.5 })
-    .to(emoticon, 0.2, { rotation: "-=8", delay: 0.7 });
+    .to(emoticon_hungry, 0.2, { rotation: "+=10" })
+    .to(emoticon_hungry, 0.2, { rotation: "-=20", delay: 0.3 })
+    .to(emoticon_hungry, 0.2, { rotation: "+=15", delay: 0.5 })
+    .to(emoticon_hungry, 0.2, { rotation: "-=8", delay: 0.7 });
 
   var tl = new TimelineMax({ delay: 4 });
-  tl.to(emoticon, 0.5, { y: 0 })
-    .to(emoticon, 1.25, { y: 100, ease: Power1.easeInOut })
-    .to(emoticon, 1.75, { x: "+=270" }, "-=1.75")
-    .to(
-      "#mushroom",
-      0.15,
+  tl.to(emoticon_hungry, 0.5, { y: 0 })
+    .to(emoticon_hungry, 1.25, { y: 100, ease: Power1.easeInOut })
+    .to(emoticon_hungry, 1.75, { x: "+=270" }, "-=1.75")
+    // .to(emoticon, 0.5, { y: 60, yoyo: true, repeat: 3, rotation: 0 })
+    .fromTo(
+      emoticon_hungry,
+      { y: 60, rotation: 0, delay: 6 },
       {
-        //ecrasement du champignon
+        y: 115,
+        yoyo: true,
+        repeat: 3,
+
+        duration: 0.5,
+        rotation: 0,
+      }
+    )
+    .fromTo(
+      "#mushroom",
+      { scaleX: 1, scaleY: 1 },
+      {
         transformOrigin: "100% 100%",
         scaleX: 1,
         scaleY: 0.2,
         ease: Power1.easeInOut,
-        //ease: Bounce.easeOut
+        duration: 1.5,
       },
-      "bounce3-=0.04"
-    );
+      2.5
+    )
+    .to(emoticon_hungry, { y: 160 }, 3)
+    .to(emoticon_hungry, { y: 165, duration: 1 })
+    .to(emoticon_hungry, { y: 180, x: 650, duration: 1 });
+
+  tl = new TimelineMax();
+  tl.to("#emotibox", 9.5, {
+    rotation: 360,
+    xPercent: "-50%",
+    yPercent: "-50%",
+    x: 850,
+  })
+    .to(emoticon_hungry, 3, { rotation: 360, x: 1050 })
+    .to(emoticon_hungry, 1, { y: 145, scaleX: 2, scaleY: 2 })
+    .set(emoticon_hungry, { attr: { src: "images/pacman_one.png" } })
+    .to("#roquette", 1, {
+      ease: "power(1)",
+      x: -100,
+    })
+    .set(emoticon_hungry, { attr: { src: "images/pacman_two.png" } })
+    .to("#roquette", 2, {
+      visibility: "hidden",
+    })
+    .to(emoticon_hungry, 3, {
+      pixi: { fillColor: "purple" },
+      duration: 3,
+      yoyo: true, //
+    });
+
+  //.to(emoticon, 2, { x: "+=220", duration: 2, rotation: 360 });
+  /////////
 };
 start_emo_group = () => {
   basics_animations();
