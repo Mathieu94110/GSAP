@@ -207,7 +207,7 @@ start_emo_content = () => {
   gsap.fromTo(
     emoticon,
     { x: 345, y: 400 },
-    { y: 20, duration: 2, ease: "power3.out" }
+    { y: 5, duration: 2, ease: "power3.out" }
   );
   gsap.to(emoticon, 2, { x: 485, y: 20, delay: 2 });
   gsap.to(emoticon, 1, { x: 485, y: 180, ease: "bounce", delay: 5 }); //quand elle tombe
@@ -251,7 +251,7 @@ start_emo_content = () => {
   /////////////
   gsap.to(emoticon, {
     ////// tete s'approche du mur
-    duration: 2,
+    duration: 1.5,
     x: 750,
     delay: 11.8,
   });
@@ -265,36 +265,36 @@ start_emo_content = () => {
   /////////////////////
   gsap.to("#roquette", {
     duration: 2,
-    delay: 14.5,
+    delay: 14.8,
     ease: "power(1)",
     x: -770,
   });
   gsap.to("#roquette", {
     duration: 2,
-    delay: 16.5,
+    delay: 16.8,
     visibility: "hidden",
   });
   gsap.to(".explosif_container", {
     duration: 2,
-    delay: 16.8,
+    delay: 17.1,
     autoAlpha: 1, //autoalpha est indiqué pour un gain de performances
   });
   gsap.to(".explosif_container", {
-    delay: 18.8,
+    delay: 18.6,
     autoAlpha: 0,
   });
   //////////////////
 
   var tl = new TimelineLite({ delay: 14.5 });
   tl.to(emoticon, 0.5, { y: 0 })
-    .to(emoticon, 1.25, { y: 25, ease: Power1.easeInOut })
+    .to(emoticon, 1.25, { y: 5, ease: Power1.easeInOut })
     .to(emoticon, 1.75, { x: "+=344" }, "-=1.75")
-    .to(emoticon, 1.5, { delay: 2.5, y: 100 });
+    .to(emoticon, 1.5, { delay: 2.5, y: 90 });
   ///////////////////
 };
 start_emo_hungry = () => {
   /* test faire rougir l'émoti
-  const app = new PIXI.Application({}); //retirer{}peutetre
+  const app = new PIXI.Application({}); 
   app.style = document.body.style;
 
   document.body.appendChild(app.view);
@@ -316,14 +316,15 @@ start_emo_hungry = () => {
     repeat: -1,
     yoyo: true,
   });
-  */
+*/
+
   basics_animations();
   const emoticon_hungry = document.getElementById("emoticon_hungry");
 
   gsap.fromTo(
     emoticon_hungry,
     { x: 345, y: 400, delay: 0 },
-    { y: 20, duration: 2, ease: "power3.out" }
+    { y: 5, duration: 2, ease: "power3.out" }
   );
   gsap.to(emoticon_hungry, {
     delay: 2,
@@ -332,15 +333,11 @@ start_emo_hungry = () => {
     repeat: 1,
     yoyo: true,
   });
-  var tl = new TimelineMax({
-    transformOrigin: "center top",
-    delay: 2,
-    repeat: -1,
-  })
-    .to(emoticon_hungry, 0.2, { rotation: "+=10" })
-    .to(emoticon_hungry, 0.2, { rotation: "-=20", delay: 0.3 })
-    .to(emoticon_hungry, 0.2, { rotation: "+=15", delay: 0.5 })
-    .to(emoticon_hungry, 0.2, { rotation: "-=8", delay: 0.7 });
+  var tl = new TimelineMax({ repeat: 2 })
+    .to(emoticon_hungry, { rotation: "+=10", duration: 0.2 })
+    .to(emoticon_hungry, { rotation: "-=20", duration: 0.2 })
+    .to(emoticon_hungry, { rotation: "+=15", duration: 0.2 })
+    .to(emoticon_hungry, { rotation: "-=8", duration: 0.2 });
 
   var tl = new TimelineMax({ delay: 4 });
   tl.to(emoticon_hungry, 0.5, { y: 0 })
@@ -364,12 +361,13 @@ start_emo_hungry = () => {
       { scaleX: 1, scaleY: 1 },
       {
         transformOrigin: "100% 100%",
+
         scaleX: 1,
         scaleY: 0.2,
         ease: Power1.easeInOut,
-        duration: 1.5,
+        duration: 2.5,
       },
-      2.5
+      1.5
     )
     .to(emoticon_hungry, { y: 160 }, 3)
     .to(emoticon_hungry, { y: 165, duration: 1 })
@@ -392,12 +390,53 @@ start_emo_hungry = () => {
     .set(emoticon_hungry, { attr: { src: "images/pacman_two.png" } })
     .to("#roquette", 2, {
       visibility: "hidden",
+    }) /* test baudruche    */
+    .to(emoticon_hungry, 1, {
+      x: 1050,
+      zindex: 4,
+      opacity: 1,
+      y: 145,
+      duration: 4.5,
+      ease: Bounce.easeOut,
     })
-    .to(emoticon_hungry, 3, {
-      pixi: { fillColor: "purple" },
-      duration: 3,
-      yoyo: true, //
+    .to(emoticon_hungry, 0.7, { y: -480, ease: Bounce.easeOut })
+
+    .to(emoticon_hungry, 1.2, { y: -170, ease: Power2.easeOut }, "-=.1")
+
+    .to(emoticon_hungry, 0.6, { y: -500, ease: Power2.easeOut }, "-=.5")
+
+    .to(emoticon_hungry, 1.3, { y: -160, ease: Power2.easeOut })
+
+    .to(emoticon_hungry, 0.8, { x: 40, y: -570, ease: Power2.easeOut }, "-=.2")
+
+    .to(emoticon_hungry, 0.7, { x: 40, y: -510, ease: Power2.easeOut }, "-=.2")
+
+    .to(emoticon_hungry, 0.5, { x: 0, y: -570, ease: Power2.easeOut }, "-=.3")
+
+    .to(emoticon_hungry, 0.5, { x: 350, y: 180, ease: Power2.easeOut })
+    .to(emoticon_hungry, 0.1, { autoAlpha: 0 })
+    .to(".explosif_container", {
+      duration: 2,
+      //  delay: 17.1,
+      autoAlpha: 1, //autoalpha est indiqué pour un gain de performances
+    })
+    .to(".explosif_container", {
+      //delay: 18.6,
+      autoAlpha: 0,
     });
+  /* 
+  var wh = window.innerHeight;
+
+  tl.to(emoticon_hungry, 0.5, { width: wh, ease: Power2.easeOut });
+
+  TweenMax.to(emoticon_hungry, 2, {
+    rotation: 360,
+    trnsformOrigin: "center",
+    repeat: -1,
+    ease: Linear.easeNone,
+  });*/
+
+  //////
 
   //.to(emoticon, 2, { x: "+=220", duration: 2, rotation: 360 });
   /////////
