@@ -293,31 +293,6 @@ start_emo_content = () => {
   ///////////////////
 };
 start_emo_hungry = () => {
-  /* test faire rougir l'émoti
-  const app = new PIXI.Application({}); 
-  app.style = document.body.style;
-
-  document.body.appendChild(app.view);
-  const texture = PIXI.Texture.from("examples/assets/pacman_two.png");
-  // time animation in seconds
-  const time = 2.0;
-
-  const bunny1 = new PIXI.Sprite(texture);
-  bunny1.scale.set(3.0, 3.0);
-  bunny1.anchor.set(0.5, 0.5);
-  bunny1.x = app.screen.width / 4;
-  bunny1.y = app.screen.height / 2;
-
-  app.stage.addChild(bunny1);
-
-  gsap.to(bunny1, {
-    pixi: { tint: "red" },
-    duration: time,
-    repeat: -1,
-    yoyo: true,
-  });
-*/
-
   basics_animations();
   const emoticon_hungry = document.getElementById("emoticon_hungry");
 
@@ -443,10 +418,75 @@ start_emo_hungry = () => {
 };
 start_emo_group = () => {
   basics_animations();
-  const emoticon = document.createElement("img");
-  emoticon.src = "./images/emoticon3" + ".png";
-  emoticon.setAttribute("id", "emoticon");
-  div.append(emoticon);
+
+  gsap.set("#g1", {
+    transformOrigin: "15 15",
+    rotation: 0,
+    x: 100,
+    y: 200,
+  });
+
+  gsap.set("#g2", {
+    transformOrigin: "5 5",
+    rotation: -90,
+    x: 108,
+  });
+
+  gsap.to("#g1", {
+    duration: 2,
+    rotation: 0,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+  });
+
+  gsap.to("#g2", {
+    duration: 1.5,
+    rotation: 80,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+  });
+
+  //3 6 et 4//
+
+  const emoticon_one = document.createElement("img");
+  emoticon_one.src = "./images/emoticon3" + ".png";
+  emoticon_one.setAttribute("id", "emoticon");
+  div.append(emoticon_one);
+
+  const emoticon_two = document.createElement("img");
+  emoticon_two.src = "./images/emoticon6" + ".png";
+  emoticon_two.setAttribute("id", "emoticon");
+  div.append(emoticon_two);
+
+  const emoticon_three = document.createElement("img");
+  emoticon_three.src = "./images/emoticon4" + ".png";
+  emoticon_three.setAttribute("id", "emoticon");
+  div.append(emoticon_three);
+  /*
+  const myEmotis = gsap.utils.toArray("#emoticon");
+
+  myEmotis.forEach((emoti, i) => {
+    gsap;
+    gsap.to(emoti[i], { x: 345, y: 400 });
+    gsap.to(emoti[i], { y: 5, duration: 2, ease: "power3.out" });
+    gsap.to(emoti[i], 2, { x: 370, delay: 2 });
+    gsap.to(emoti[i], 1, { x: 400, duration: 1 });
+    gsap.to(emoti[i], 0.5, { x: 485, y: 180, ease: "bounce", delay: 4.5 });
+  });
+*/
+  /*
+  gsap.to(emoticon_one, { x: 345, y: 50 });
+
+  gsap.fromTo(
+    emoticon,
+    { x: 345, y: 400 },
+    { y: 5, duration: 2, ease: "power3.out" }
+  );
+  gsap.to(emoticon, 2, { x: 370, delay: 2 });
+  gsap.to(emoticon, 1, { x: 400, duration: 1 });
+  gsap.to(emoticon, 0.5, { x: 485, y: 180, ease: "bounce", delay: 4.5 }); //quand elle tombe*/
 };
 
 // controlleurs audio

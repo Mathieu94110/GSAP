@@ -418,11 +418,27 @@ a.background-button:hover:after {
 /* roues*/
 #svg_container {
   z-index: -1;
+  left: 0px;
 }
 svg {
   overflow: visible;
   position: absolute;
-  left: 50%;
-  top: 50%;
+
   transform: translate(-50%, -50%);
+}
+
+/*animations du pont*/
+
+#svgs {
+  position: fixed;
+  left: 360px;
+  bottom: 37%;
+  z-index: 4;
+}
+
+.segment {
+  fill: green;
+  fill-opacity: 1;
+  stroke: rgb(108, 255, 132);
+  stroke-width: 3;
 }
