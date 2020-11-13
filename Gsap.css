@@ -151,6 +151,8 @@ body {
   height: 60px;
   width: 60px;
   z-index: 1;
+  left: 340px;
+  bottom: 100px;
 }
 #emoticon_hungry {
   position: absolute;

@@ -451,11 +451,13 @@ start_emo_group = () => {
   //3 6 et 4//
 
   const emoticon_one = document.createElement("img");
+
   emoticon_one.src = "./images/emoticon3" + ".png";
   emoticon_one.setAttribute("id", "emoticon");
   div.append(emoticon_one);
 
   const emoticon_two = document.createElement("img");
+
   emoticon_two.src = "./images/emoticon6" + ".png";
   emoticon_two.setAttribute("id", "emoticon");
   div.append(emoticon_two);
@@ -464,19 +466,73 @@ start_emo_group = () => {
   emoticon_three.src = "./images/emoticon4" + ".png";
   emoticon_three.setAttribute("id", "emoticon");
   div.append(emoticon_three);
-  /*
-  const myEmotis = gsap.utils.toArray("#emoticon");
+  const products = [];
+  products.push(emoticon_one);
+  products.push(emoticon_two);
+  products.push(emoticon_three);
 
-  myEmotis.forEach((emoti, i) => {
-    gsap;
-    gsap.to(emoti[i], { x: 345, y: 400 });
-    gsap.to(emoti[i], { y: 5, duration: 2, ease: "power3.out" });
-    gsap.to(emoti[i], 2, { x: 370, delay: 2 });
-    gsap.to(emoti[i], 1, { x: 400, duration: 1 });
-    gsap.to(emoti[i], 0.5, { x: 485, y: 180, ease: "bounce", delay: 4.5 });
+  //const $products = gsap.utils.toArray("#emoticon");
+  //const $products = gsap.utils.toArray("#emoticon");
+  $(products).each(function (index) {
+    var tl = new TimelineMax({ delay: index * 3 });
+    tl.staggerTo(
+      this,
+      0.5,
+
+      { x: 0, y: -210 },
+      0.25
+    )
+      .staggerTo(this, 0.5, { x: "+=20" }, 0.25, "+=3")
+      .staggerTo(this, 0.5, { x: "+=50" }, 0.25, "+=3")
+      .staggerTo(
+        this,
+        0.5,
+        { x: "+=100", y: "+=150", rotation: 360 },
+        0.25,
+        "+=0.2"
+      );
+    tl.timeScale(3);
   });
-*/
   /*
+    .tl1 = new TimelineMax({ stagger: 2 });
+  tl1
+    .staggerTo(
+      [emoticon_one, emoticon_two, emoticon_three],
+      0.5,
+
+      { x: 0, y: -210 },
+      0.25
+    )
+    .staggerTo(
+      [emoticon_one, emoticon_two, emoticon_three],
+      0.5,
+      { x: "+=20" },
+      0.25,
+      "+=3"
+    )
+    .staggerTo(
+      [emoticon_one, emoticon_two, emoticon_three],
+      0.5,
+      { x: "+=50" },
+      0.25,
+      "+=3"
+    )
+    .staggerTo(
+      [emoticon_one, emoticon_two, emoticon_three],
+      0.5,
+      { x: "+=100", y: "+=150", rotation: 360 },
+      0.25,
+      "+=0.2"
+    );*/
+
+  /*
+tl.staggerTo ([f1_1, f1_2, f1_3], 0.5, {opacity: 1, left:"+=40px"}, 0.25 )
+  .staggerTo ([f1_1, f1_2, f1_3], 0.5, {opacity: 0, left:"-=40px"}, 0.25 , "+=3" );
+
+
+
+
+
   gsap.to(emoticon_one, { x: 345, y: 50 });
 
   gsap.fromTo(
