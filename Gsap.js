@@ -428,7 +428,7 @@ start_emo_group = () => {
 
   gsap.set("#g2", {
     transformOrigin: "5 5",
-    rotation: -90,
+    rotation: 0,
     x: 108,
   });
 
@@ -443,6 +443,7 @@ start_emo_group = () => {
   gsap.to("#g2", {
     duration: 1.5,
     rotation: 80,
+    repeatDelay: 1,
     repeat: -1,
     yoyo: true,
     ease: "sine.inOut",
@@ -473,6 +474,111 @@ start_emo_group = () => {
 
   //const $products = gsap.utils.toArray("#emoticon");
   //const $products = gsap.utils.toArray("#emoticon");
+  gsap.registerPlugin();
+  gsap.registerEffect({
+    name: "fade",
+    effect: (targets) => {
+      var tl = new TimelineMax({ delay: 0 });
+      return tl
+        .to(targets, { x: 0, y: -205, duration: 0.5, delay: 0.25 })
+        .to(targets, { x: "+=20", duration: 2, delay: 0.5 })
+        .to(targets, { x: "+=100", duration: 1, delay: 0.25 })
+        .to(
+          targets,
+
+          {
+            x: "+=50",
+            y: "+=181",
+            duration: 0.5,
+            delay: 1,
+            ease: Bounce.easeOut,
+          }
+        );
+    },
+
+    extendTimeline: true,
+  });
+
+  var dur = 0.4,
+    dur2 = 0.5,
+    easing = Power1.easeInOut,
+    easing2 = Power1.easeInOut;
+
+  let tl = gsap.timeline();
+  tl.fade(emoticon_one)
+    .fade(emoticon_two, "-=1")
+    .to(emoticon_one, { x: "+=50" })
+    .fade(emoticon_three, "-=1.5")
+    .to(emoticon_two, { x: "+=25" })
+    .add("start")
+    .to(emoticon_three, {
+      x: "+=50",
+
+      ease: "bounce",
+    })
+    .to(
+      emoticon_one,
+      {
+        x: "+=10",
+
+        ease: "bounce",
+      },
+      "-=1"
+    )
+    .to(
+      emoticon_two,
+      {
+        x: "+=40",
+
+        ease: "bounce",
+      },
+      "-=1" //test du saut ici
+    )
+    .to(emoticon_one, dur, {
+      bezier: {
+        curviness: 2,
+        values: [
+          {
+            x: 0,
+            y: 7,
+          },
+          {
+            x: 0,
+            y: 0,
+          },
+          {
+            x: 25,
+            y: -35,
+          },
+          {
+            x: 53,
+            y: 0,
+          },
+        ],
+        autoRotate: true,
+      },
+      ease: easing,
+    })
+
+    .to(emoticon_one, dur2, {
+      bezier: {
+        curviness: 2,
+        values: [
+          {
+            x: 5,
+            y: 0,
+          },
+          {
+            x: -53,
+            y: 0,
+          },
+        ],
+        autoRotate: true,
+      },
+      ease: easing2,
+    });
+
+  /*
   $(products).each(function (index) {
     var tl = new TimelineMax({ delay: index * 3 });
     tl.staggerTo(
@@ -492,7 +598,7 @@ start_emo_group = () => {
         "+=0.2"
       );
     tl.timeScale(3);
-  });
+  });*/
   /*
     .tl1 = new TimelineMax({ stagger: 2 });
   tl1
