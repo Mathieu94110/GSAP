@@ -27,9 +27,6 @@ body {
   height: auto;
 }
 #mushroom-box {
-  width: 100%;
-  height: 100%;
-
   position: absolute;
   display: block;
 }
@@ -121,21 +118,31 @@ body {
   bottom: 0;
   z-index: 3;
 }
+
+#roquette_container {
+  padding-top: 200px;
+  padding-left: 1060px;
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 #roquette {
   height: auto;
   width: 90px;
-  margin-left: 1120px;
-  margin-top: 310px;
-  position: fixed;
+  padding-right: 90px;
+  padding-bottom: 25px;
   z-index: 1;
+  position: fixed;
 }
-#roquet_lancher {
+#roquet_luncher {
   height: auto;
   width: 90px;
-  margin-left: 1170px;
-  margin-top: 310px;
-  position: fixed;
   z-index: 2;
+  position: fixed;
 }
 #tuyau_two {
   width: 100px;

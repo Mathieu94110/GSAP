@@ -77,7 +77,7 @@ basics_animations = () => {
   /////////////////champignon
   gsap
     .timeline({
-      repeat: -1,
+      repeat: 41,
       yoyo: true,
       defaults: {
         duration: 2,
@@ -511,11 +511,7 @@ start_emo_group = () => {
     .fade(emoticon_three, "-=1.5")
     .to(emoticon_two, { x: "+=25" })
     .add("start")
-    .to(emoticon_three, {
-      x: "+=50",
 
-      ease: "bounce",
-    })
     .to(
       emoticon_one,
       {
@@ -534,7 +530,70 @@ start_emo_group = () => {
       },
       "-=1" //test du saut ici
     )
-    .to(emoticon_one, dur, {
+    .to(emoticon_three, {
+      x: "+=20",
+
+      ease: "bounce",
+    })
+    .to(
+      emoticon_one,
+      {
+        x: "-=50",
+        scale: 1,
+        ease: "bounce",
+      },
+      "-=1"
+    )
+    .to(
+      emoticon_two,
+      {
+        x: "-=35",
+        scale: 1,
+        ease: "bounce",
+      },
+      "-=1"
+    )
+    .to(
+      emoticon_three,
+      {
+        x: "-=25",
+        scale: 1,
+        ease: "bounce",
+      },
+      "-=1"
+    )
+    .to(
+      emoticon_one,
+      {
+        x: "+=60",
+        ease: "bounce",
+      },
+      "start"
+    )
+    .to(
+      emoticon_two,
+      {
+        x: "+=45",
+        ease: "bounce",
+      },
+      "start"
+    )
+    .to(
+      emoticon_three,
+      {
+        x: "+=60",
+        ease: "bounce",
+      },
+      "start"
+    )
+    .to("#mushroom", {
+      rotation: 0,
+      x: 470,
+      duration: 0.5,
+    });
+
+  /*
+    .to(dur, {
       bezier: {
         curviness: 2,
         values: [
