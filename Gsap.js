@@ -75,6 +75,7 @@ basics_animations = () => {
     });
   ///////////////////////////
   /////////////////champignon
+  /*
   gsap
     .timeline({
       repeat: 41,
@@ -91,7 +92,7 @@ basics_animations = () => {
     .to("#mushroom-box", {
       duration: 0.2,
       rotation: 2,
-    });
+    });*/
 
   ///////////////////////
 
@@ -590,7 +591,26 @@ start_emo_group = () => {
       rotation: 0,
       x: 470,
       duration: 0.5,
+    })
+    .to("#container", {
+      autoAlpha: 1,
+    })
+    .to("#mushroom", {
+      delay: -1,
+      autoAlpha: 0,
+    })
+    .to("#roquet_luncher", {
+      delay: -0.5,
+      autoAlpha: 0,
+    })
+    .to("#roquette", {
+      delay: -0.5,
+      autoAlpha: 0,
     });
+  /*.to("#container", {
+      delay: 6,
+      autoAlpha: 1,
+    });*/
 
   /*
     .to(dur, {
@@ -709,6 +729,65 @@ tl.staggerTo ([f1_1, f1_2, f1_3], 0.5, {opacity: 1, left:"+=40px"}, 0.25 )
   gsap.to(emoticon, 1, { x: 400, duration: 1 });
   gsap.to(emoticon, 0.5, { x: 485, y: 180, ease: "bounce", delay: 4.5 }); //quand elle tombe*/
 };
+
+/**/
+
+console.clear();
+// TweenMax.set("#demo", {xPercent:-50, yPercent:-50});
+var paths = document.querySelectorAll("path");
+var startX = 626;
+var startY = 516;
+var tl = new TimelineMax({ paused: true, delay: 16 });
+
+for (i = 0; i < paths.length; i++) {
+  var data = paths[i].getBBox();
+  var nested = new TimelineLite();
+  var durationTranslate = (Math.random() + 0.5) * 1;
+  var cleaningDelay = 6 - durationTranslate;
+  console.log(
+    "{durationTranslate:" +
+      durationTranslate +
+      ", cleaningDelay: " +
+      cleaningDelay +
+      "}"
+  );
+  nested
+    .from(paths[i], 2, { autoAlpha: 0 })
+    .fromTo(
+      paths[i],
+      1.5,
+      { scale: 0, transformOrigin: "50% 50%", ease: Power0.easeNone },
+      { scale: 1.5, transformOrigin: "50% 50%", ease: Power0.easeNone },
+      "-=2"
+    )
+    .fromTo(
+      paths[i],
+      6,
+      { scale: 1.5, transformOrigin: "50% 50%", ease: Power0.easeNone },
+      { scale: 0.5, transformOrigin: "50% 50%", ease: Power0.easeNone }
+    )
+    .from(
+      paths[i],
+      durationTranslate,
+      {
+        x: startX - data.x - data.width / 2,
+        y: startY - data.y - data.height / 2,
+        ease: Power4.easeOut,
+      },
+      "-=7"
+    )
+    .to(
+      paths[i],
+      2,
+      { autoAlpha: 0, transformOrigin: "50% 50%", ease: Power0.easeNone },
+      "-=3"
+    );
+  tl.add(nested, 0);
+}
+
+tl.play();
+
+/**/
 
 // controlleurs audio
 
