@@ -73,26 +73,47 @@ basics_animations = () => {
       duration: 3,
       ease: SteppedEase.config(4),
     });
+
   ///////////////////////////
   /////////////////champignon
-  /*
+  /*gsap
+    .timeline({
+      repeat: 41,
+      yoyo: true,
+      repeatDelay: 0,
+    })
+  gsap.fromTo(
+    "#mushroom-box",
+    0.7,
+    { rotation: 20, transformOrigin: "right bottom" },
+    {
+      rotation: -20,
+      transformOrigin: "left bottom",
+
+   
+    }
+  );*/
+
   gsap
     .timeline({
       repeat: 41,
       yoyo: true,
+      repeatDelay: 0,
       defaults: {
-        duration: 2,
-        autoAlpha: 1,
+        duration: 0.7,
+
+        ease: Power0.easeNone,
       },
     })
-    .from("#mushroom-box", {
-      duration: 0.2,
-      rotation: -2,
-    })
-    .to("#mushroom-box", {
-      duration: 0.2,
-      rotation: 2,
-    });*/
+    .fromTo(
+      "#mushroom",
+      0.7,
+      { rotation: 0, transformOrigin: "right bottom" },
+      {
+        rotation: -12,
+        transformOrigin: "left bottom",
+      }
+    );
 
   ///////////////////////
 
@@ -455,26 +476,21 @@ start_emo_group = () => {
   const emoticon_one = document.createElement("img");
 
   emoticon_one.src = "./images/emoticon3" + ".png";
-  emoticon_one.setAttribute("id", "emoticon");
+  emoticon_one.setAttribute("class", "emoticon");
+
   div.append(emoticon_one);
 
   const emoticon_two = document.createElement("img");
 
   emoticon_two.src = "./images/emoticon6" + ".png";
-  emoticon_two.setAttribute("id", "emoticon");
+  emoticon_two.setAttribute("class", "emoticon");
   div.append(emoticon_two);
 
   const emoticon_three = document.createElement("img");
   emoticon_three.src = "./images/emoticon4" + ".png";
-  emoticon_three.setAttribute("id", "emoticon");
+  emoticon_three.setAttribute("class", "emoticon");
   div.append(emoticon_three);
-  const products = [];
-  products.push(emoticon_one);
-  products.push(emoticon_two);
-  products.push(emoticon_three);
 
-  //const $products = gsap.utils.toArray("#emoticon");
-  //const $products = gsap.utils.toArray("#emoticon");
   gsap.registerPlugin();
   gsap.registerEffect({
     name: "fade",
@@ -499,11 +515,6 @@ start_emo_group = () => {
 
     extendTimeline: true,
   });
-
-  var dur = 0.4,
-    dur2 = 0.5,
-    easing = Power1.easeInOut,
-    easing2 = Power1.easeInOut;
 
   let tl = gsap.timeline();
   tl.fade(emoticon_one)
@@ -606,78 +617,37 @@ start_emo_group = () => {
     .to("#roquette", {
       delay: -0.5,
       autoAlpha: 0,
-    });
-  /*.to("#container", {
-      delay: 6,
-      autoAlpha: 1,
-    });*/
+    }); /* roulade collective
 
-  /*
-    .to(dur, {
-      bezier: {
-        curviness: 2,
-        values: [
-          {
-            x: 0,
-            y: 7,
-          },
-          {
-            x: 0,
-            y: 0,
-          },
-          {
-            x: 25,
-            y: -35,
-          },
-          {
-            x: 53,
-            y: 0,
-          },
-        ],
-        autoRotate: true,
-      },
-      ease: easing,
-    })
+  var mtl = new TimelineMax({ delay: 19 });
 
-    .to(emoticon_one, dur2, {
-      bezier: {
-        curviness: 2,
-        values: [
-          {
-            x: 5,
-            y: 0,
-          },
-          {
-            x: -53,
-            y: 0,
-          },
-        ],
-        autoRotate: true,
-      },
-      ease: easing2,
-    });
+  $(".emoticon").each(function () {
+    var tl = new TimelineMax({});
 
-  /*
-  $(products).each(function (index) {
-    var tl = new TimelineMax({ delay: index * 3 });
-    tl.staggerTo(
-      this,
-      0.5,
-
-      { x: 0, y: -210 },
-      0.25
-    )
-      .staggerTo(this, 0.5, { x: "+=20" }, 0.25, "+=3")
-      .staggerTo(this, 0.5, { x: "+=50" }, 0.25, "+=3")
-      .staggerTo(
+    tl.to(this, 1, { x: 100, ease: Power0.easeIn }, "in")
+      .from(this, 1, { scale: 0.5, opacity: 0.5, ease: Power4.easeIn }, "in")
+      .to(
         this,
-        0.5,
-        { x: "+=100", y: "+=150", rotation: 360 },
-        0.25,
-        "+=0.2"
-      );
-    tl.timeScale(3);
-  });*/
+        1,
+        { scale: 0.5, opacity: 0.5, ease: Power4.easeOut, delay: 1 },
+        "out"
+      )
+      .to(this, 1, { x: 200, ease: Power0.easeOut, delay: 1 }, "out");
+
+    mtl.add(tl).timeScale(3);
+  });
+
+  /*
+   
+   tl.staggerTo(this, 0.5, {
+    rotation: 360,
+    xPercent: "-50%",
+    yPercent: "-50%",
+    x: 850,
+  })
+    .to(emoticon_hungry, 3, { rotation: 360, x: 1050 })
+        );*/
+
   /*
     .tl1 = new TimelineMax({ stagger: 2 });
   tl1
