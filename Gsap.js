@@ -617,27 +617,75 @@ start_emo_group = () => {
     .to("#roquette", {
       delay: -0.5,
       autoAlpha: 0,
-    }); /* roulade collective
+    }) //////////  roulade collective
+    .to([emoticon_one, emoticon_two, emoticon_three], 2.2, {
+      rotation: 540,
+      ease: Linear.easeNone,
+      x: "+=200",
+    })
+    .to(
+      [emoticon_one, emoticon_two, emoticon_three],
+      2,
+      {
+        rotation: 1080,
+        ease: Linear.easeNone,
+        x: "+=260",
+      },
+      "+=0.5"
+    ) //////////  saut collectif
+    .to([emoticon_one, emoticon_two, emoticon_three], 0.3, {
+      scaleY: 0.6,
+    })
+    .to([emoticon_one, emoticon_two, emoticon_three], 0.2, {
+      scaleY: 1,
+    })
+    .to(
+      [emoticon_one, emoticon_two, emoticon_three],
+      0.7,
+      {
+        bezier: {
+          type: "thru",
+          values: [
+            { x: 50, y: -350 },
+            { x: 350, y: 0 },
+          ],
+          curviness: 1,
+        },
+        ease: Power2.easeOut,
+      },
+      "-=0.2"
+    )
 
-  var mtl = new TimelineMax({ delay: 19 });
+    .to([emoticon_one, emoticon_two, emoticon_three], 0.3, {
+      scaleY: 0.6,
+    })
+    .to([emoticon_one, emoticon_two, emoticon_three], 0.2, {
+      scaleY: 1,
+    })
+    .to(
+      [emoticon_one, emoticon_two, emoticon_three],
+      0.7,
+      {
+        bezier: {
+          type: "thru",
+          values: [
+            { x: 500, y: -300 },
+            { x: 650, y: 0 },
+          ],
+          curviness: 1,
+        },
+        ease: Power2.easeOut,
+      },
+      "-=0.2"
+    )
 
-  $(".emoticon").each(function () {
-    var tl = new TimelineMax({});
+    .set([emoticon_one, emoticon_two, emoticon_three], {
+      opacity: 0,
+      immediateRender: false,
+    });
+};
 
-    tl.to(this, 1, { x: 100, ease: Power0.easeIn }, "in")
-      .from(this, 1, { scale: 0.5, opacity: 0.5, ease: Power4.easeIn }, "in")
-      .to(
-        this,
-        1,
-        { scale: 0.5, opacity: 0.5, ease: Power4.easeOut, delay: 1 },
-        "out"
-      )
-      .to(this, 1, { x: 200, ease: Power0.easeOut, delay: 1 }, "out");
-
-    mtl.add(tl).timeScale(3);
-  });
-
-  /*
+/*
    
    tl.staggerTo(this, 0.5, {
     rotation: 360,
@@ -648,7 +696,7 @@ start_emo_group = () => {
     .to(emoticon_hungry, 3, { rotation: 360, x: 1050 })
         );*/
 
-  /*
+/*
     .tl1 = new TimelineMax({ stagger: 2 });
   tl1
     .staggerTo(
@@ -680,7 +728,7 @@ start_emo_group = () => {
       "+=0.2"
     );*/
 
-  /*
+/*
 tl.staggerTo ([f1_1, f1_2, f1_3], 0.5, {opacity: 1, left:"+=40px"}, 0.25 )
   .staggerTo ([f1_1, f1_2, f1_3], 0.5, {opacity: 0, left:"-=40px"}, 0.25 , "+=3" );
 
@@ -698,7 +746,6 @@ tl.staggerTo ([f1_1, f1_2, f1_3], 0.5, {opacity: 1, left:"+=40px"}, 0.25 )
   gsap.to(emoticon, 2, { x: 370, delay: 2 });
   gsap.to(emoticon, 1, { x: 400, duration: 1 });
   gsap.to(emoticon, 0.5, { x: 485, y: 180, ease: "bounce", delay: 4.5 }); //quand elle tombe*/
-};
 
 /**/
 
