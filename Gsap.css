@@ -19,9 +19,6 @@ body {
   margin: 0 auto;
 }
 
-#div {
-}
-
 #mushroom {
   top: 320px;
   left: 600px;
@@ -48,6 +45,7 @@ body {
   margin-left: 710px;
   height: 120px;
   position: fixed;
+  z-index: 1;
 }
 #thwomp_two {
   width: 100px;
@@ -55,6 +53,7 @@ body {
   margin-left: 810px;
   height: 120px;
   position: fixed;
+  z-index: 1;
 }
 #thwomp_three {
   width: 100px;
@@ -62,6 +61,7 @@ body {
   margin-left: 910px;
   height: 120px;
   position: fixed;
+  z-index: 1;
 }
 
 .tapis {
@@ -168,7 +168,6 @@ body {
   left: 40%;
 }
 
-/**/
 #tuyau_two {
   width: 100px;
   right: 120px;
@@ -177,17 +176,27 @@ body {
   bottom: 0;
   z-index: 3;
 }
-.emoticon {
-  position: absolute;
-  height: 60px;
+/*Emo-content*/
+#emoticon {
+  padding-top: 160px;
+  position: fixed;
   width: 60px;
-  z-index: 1;
-  left: 340px;
-  bottom: 180px;
+  height: 60px;
 }
-#emoticon_hungry {
+#emoticon_one,
+#emoticon_two,
+#emoticon_three {
   position: absolute;
   z-index: 2;
+  /*test baudruche*/
+  height: 60px;
+  width: 60px;
+}
+#emoticon_hungry,
+#emoticon_happy {
+  position: absolute;
+  z-index: 2;
+  visibility: hidden;
   /*test baudruche*/
   transform: translate(-5%, -5%);
 }
@@ -196,14 +205,20 @@ body {
   position: absolute;
   background-color: none;
   top: 160px;
-
   display: block;
-
-  /*
+}
+#g1,
+#g2 {
+  visibility: hidden;
+}
+/* emotisgroup*/
+.emoticon {
   position: absolute;
-
-  width: 200px;
-  height: 10px;*/
+  height: 60px;
+  width: 60px;
+  z-index: 1;
+  left: 340px;
+  top: 205px;
 }
 
 /*Design des bouttons padding-left:575px */
@@ -378,6 +393,13 @@ a.background-button:hover:after {
   margin-top: 8px;
   vertical-align: middle;
 }
+/* 3 roues*/
+.whell_one {
+}
+.whell_two {
+}
+.whell_three {
+}
 
 /*explosion*/
 
@@ -448,28 +470,32 @@ a.background-button:hover:after {
   animation-delay: 0s;
 }
 
-/* roues*/
 #svg_container {
-  z-index: -1;
-  left: 0px;
+  z-index: 0;
 }
+
 svg {
   overflow: visible;
   position: absolute;
-
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
 }
 
 /*animations du pont*/
 
-#svgs {
-  position: fixed;
-  left: 360px;
-  bottom: 37%;
+#pont {
+  position: absolute;
+  left: 330px;
+  top: 100px;
   z-index: 4;
 }
+#g1,
+#g2 {
+  visibility: hidden;
+}
 
-.segment {
+rect.segment {
   fill: green;
   fill-opacity: 1;
   stroke: rgb(108, 255, 132);

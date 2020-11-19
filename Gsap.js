@@ -6,8 +6,8 @@ const arm = document.getElementById("arm");
 basics_animations = () => {
   ///Vol aléatoire de Bowser
 
-  var width = $("#div").width();
-  var height = $("#div").height();
+  var width = $(".machinearticule").width();
+  var height = $(".machinearticule").height();
   var dx = width * 0.9;
   var dy = height * 0.9;
 
@@ -74,26 +74,6 @@ basics_animations = () => {
       ease: SteppedEase.config(4),
     });
 
-  ///////////////////////////
-  /////////////////champignon
-  /*gsap
-    .timeline({
-      repeat: 41,
-      yoyo: true,
-      repeatDelay: 0,
-    })
-  gsap.fromTo(
-    "#mushroom-box",
-    0.7,
-    { rotation: 20, transformOrigin: "right bottom" },
-    {
-      rotation: -20,
-      transformOrigin: "left bottom",
-
-   
-    }
-  );*/
-
   gsap
     .timeline({
       repeat: 41,
@@ -115,139 +95,140 @@ basics_animations = () => {
       }
     );
 
-  ///////////////////////
-
+  ///machine articulée
   gsap.to(conveyor, 2, { marginLeft: 140, delay: 2 });
   gsap.to(arm, 2, { marginLeft: 140, delay: 2 });
-
-  //roues
-
-  var R = 290,
-    dur = 7,
-    totalCount = 3,
-    Ease = Linear.easeNone;
-
-  var tl = new TimelineLite()
-    .to(
-      ".whell_one",
-      dur,
-      {
-        bezier: {
-          curviness: 1.5,
-          values: [
-            { x: 0, y: 0 },
-            { x: R / 2, y: R / 2 },
-            { x: 0, y: R },
-            { x: -R / 2, y: R / 2 },
-            { x: 0, y: 0 },
-          ],
-        },
-        rotation: 320,
-        repeat: -1,
-        ease: Ease,
-        transformOrigin: "center",
-      },
-      dur / totalCount
-    )
-    .to(
-      ".whell_one",
-      dur * 2,
-      { rotation: -360, ease: Power0.easeNone, repeat: -1 },
-      0
-    )
-    .time(dur)
-    .to(
-      ".whell_two",
-      dur,
-      {
-        bezier: {
-          curviness: 1.5,
-          values: [
-            { x: 0, y: 0 },
-            { x: R / 2, y: R / 2 },
-            { x: 0, y: R },
-            { x: -R / 2, y: R / 2 },
-            { x: 0, y: 0 },
-          ],
-        },
-        rotation: -900,
-        repeat: -1,
-        ease: Ease,
-        transformOrigin: "center",
-      },
-      dur / totalCount
-    )
-    .to(
-      ".whell_two",
-      dur * 2,
-      { rotation: -360, ease: Power0.easeNone, repeat: -1 },
-      0
-    )
-    .time(dur)
-    .to(
-      ".whell_three",
-      dur,
-      {
-        bezier: {
-          curviness: 1.5,
-          values: [
-            { x: 0, y: 0 },
-            { x: R / 2, y: R / 2 },
-            { x: 0, y: R },
-            { x: -R / 2, y: R / 2 },
-            { x: 0, y: 0 },
-          ],
-        },
-        rotation: 320,
-        repeat: -1,
-        ease: Ease,
-        transformOrigin: "center",
-      },
-      dur / totalCount
-    )
-    .to(
-      ".whell_three",
-      dur * 2,
-      { rotation: -360, ease: Power0.easeNone, repeat: -1 },
-      0
-    )
-    .time(dur);
 };
+/////////
+// 3 roues
 
+var R = 290,
+  dur = 7,
+  totalCount = 3,
+  Ease = Linear.easeNone;
+
+var tl = gsap.timeline({ opacity: 1 });
+tl.to(
+  ".whell_one",
+  dur,
+  {
+    motionPath: {
+      curviness: 1.5,
+      values: [
+        { x: 0, y: 0 },
+        { x: R / 2, y: R / 2 },
+        { x: 0, y: R },
+        { x: -R / 2, y: R / 2 },
+        { x: 0, y: 0 },
+      ],
+    },
+    rotation: 320,
+    repeat: -1,
+    ease: Ease,
+    transformOrigin: "center",
+  },
+  dur / totalCount
+)
+  .to(
+    ".whell_one",
+    dur * 2,
+    { rotation: -360, ease: Power0.easeNone, repeat: -1 },
+    0
+  )
+  .time(dur)
+  .to(
+    ".whell_two",
+    dur,
+    {
+      mmotionPath: {
+        curviness: 1.5,
+        values: [
+          { x: 0, y: 0 },
+          { x: R / 2, y: R / 2 },
+          { x: 0, y: R },
+          { x: -R / 2, y: R / 2 },
+          { x: 0, y: 0 },
+        ],
+      },
+      rotation: -900,
+      repeat: -1,
+      ease: Ease,
+      transformOrigin: "center",
+    },
+    dur / totalCount
+  )
+  .to(
+    ".whell_two",
+    dur * 2,
+    { rotation: -360, ease: Power0.easeNone, repeat: -1 },
+    0
+  )
+  .time(dur)
+  .to(
+    ".whell_three",
+    dur,
+    {
+      motionPath: {
+        curviness: 1.5,
+        values: [
+          { x: 0, y: 0 },
+          { x: R / 2, y: R / 2 },
+          { x: 0, y: R },
+          { x: -R / 2, y: R / 2 },
+          { x: 0, y: 0 },
+        ],
+      },
+      rotation: 320,
+      repeat: -1,
+      ease: Ease,
+      transformOrigin: "center",
+    },
+    dur / totalCount
+  )
+  .to(
+    ".whell_three",
+    dur * 2,
+    { rotation: -360, ease: Power0.easeNone, repeat: -1 },
+    0
+  )
+  .time(dur);
+
+//
 start_emo_content = () => {
   basics_animations();
   //cache de l'emoticon_hungry sur le coté
   document.getElementById("emoticon_hungry").style.visibility = "hidden";
-
+  document.getElementById("emoticon_happy").style.visibility = "visible";
+  /*
   const emoticon = document.createElement("img");
   emoticon.src = "./images/emoticon1" + ".png";
   emoticon.setAttribute("id", "emoticon");
-  div.append(emoticon);
-
-  gsap.to(emoticon, { x: 345, y: 50 });
+  machinearticule.append(emoticon);
+*/
+  gsap.to("#emoticon_happy", { x: 345, y: 50 });
 
   gsap.fromTo(
-    emoticon,
+    "#emoticon_happy",
     { x: 345, y: 400 },
     { y: 5, duration: 2, ease: "power3.out" }
   );
-  gsap.to(emoticon, 2, { x: 485, y: 20, delay: 2 });
-  gsap.to(emoticon, 1, { x: 485, y: 180, ease: "bounce", delay: 5 }); //quand elle tombe
+  gsap.to("#emoticon_happy", 2, { x: 485, y: 20, delay: 2 });
+  gsap.to("#emoticon_happy", 1, { x: 485, y: 180, ease: "bounce", delay: 5 }); //quand elle tombe
 
-  gsap.to(emoticon, 1, { x: 565, delay: 7 });
+  gsap.to("#emoticon_happy", 1, { x: 565, delay: 7 });
 
-  gsap.to(emoticon, {
+  gsap.to("#emoticon_happy", {
     duration: 2.5,
     x: 580,
     delay: 9,
     ease: "elastic.out(1, 0.3)",
   });
-  gsap.to(emoticon, {
+  gsap.to("#emoticon_happy", {
     duration: 0.5,
     x: 485,
     delay: 10,
   });
-  gsap.to(emoticon, {
+  gsap.to("#emoticon_happy", {
     ////// Emoticon met coup de tete
     duration: 0.3,
     x: 600,
@@ -257,13 +238,15 @@ start_emo_content = () => {
 
   ///////////
 
-  gsap.set("#mushroom", { xPercent: "-50%", yPercent: "-50%", autoAlpha: 1 });
-  tl = new TimelineMax();
-  tl.to("#mushroom-box", 2, {
+  tl = gsap.timeline();
+  tl.to("#mushroom", 1, {
+    transformOrigin: "center",
     rotation: 360,
-    x: 800,
-    y: 150,
+    x: "+=800",
+    y: "-=150",
     delay: 10.6,
+    ease: Linear.easeNone,
+    scale: 1.2,
   });
 
   gsap.to("#mushroom", 0.1, { visibility: "hidden", delay: 11.6 });
@@ -271,14 +254,14 @@ start_emo_content = () => {
   // this code has the same effect
 
   /////////////
-  gsap.to(emoticon, {
+  gsap.to("#emoticon_happy", {
     ////// tete s'approche du mur
     duration: 1.5,
     x: 750,
     delay: 11.8,
   });
 
-  gsap.to(emoticon, {
+  gsap.to("emoticon_happy", {
     duration: 0.5,
     delay: 13.8,
     x: 990,
@@ -308,13 +291,14 @@ start_emo_content = () => {
   //////////////////
 
   var tl = new TimelineLite({ delay: 14.5 });
-  tl.to(emoticon, 0.5, { y: 0 })
-    .to(emoticon, 1.25, { y: 5, ease: Power1.easeInOut })
-    .to(emoticon, 1.75, { x: "+=344" }, "-=1.75")
-    .to(emoticon, 1.5, { delay: 2.5, y: 90 });
+  tl.to("#emoticon_happy", 0.5, { y: 0 })
+    .to("#emoticon_happy", 1.25, { y: 5, ease: Power1.easeInOut })
+    .to("#emoticon_happy", 1.75, { x: "+=344" }, "-=1.75")
+    .to("#emoticon_happy", 1.5, { delay: 2.5, y: 90 });
   ///////////////////
 };
 start_emo_hungry = () => {
+  document.getElementById("emoticon_hungry").style.visibility = "visible";
   basics_animations();
   const emoticon_hungry = document.getElementById("emoticon_hungry");
 
@@ -370,7 +354,7 @@ start_emo_hungry = () => {
     .to(emoticon_hungry, { y: 165, duration: 1 })
     .to(emoticon_hungry, { y: 180, x: 650, duration: 1 });
 
-  tl = new TimelineMax();
+  tl = gsap.timeline();
   tl.to("#emotibox", 9.5, {
     rotation: 360,
     xPercent: "-50%",
@@ -426,7 +410,7 @@ start_emo_hungry = () => {
 
   tl.to(emoticon_hungry, 0.5, { width: wh, ease: Power2.easeOut });
 
-  TweenMax.to(emoticon_hungry, 2, {
+  gsap.to(emoticon_hungry, 2, {
     rotation: 360,
     trnsformOrigin: "center",
     repeat: -1,
@@ -441,6 +425,8 @@ start_emo_hungry = () => {
 start_emo_group = () => {
   basics_animations();
 
+  document.getElementById("g1").style.visibility = "visible";
+  document.getElementById("g2").style.visibility = "visible";
   gsap.set("#g1", {
     transformOrigin: "15 15",
     rotation: 0,
@@ -473,24 +459,6 @@ start_emo_group = () => {
 
   //3 6 et 4//
 
-  const emoticon_one = document.createElement("img");
-
-  emoticon_one.src = "./images/emoticon3" + ".png";
-  emoticon_one.setAttribute("class", "emoticon");
-
-  div.append(emoticon_one);
-
-  const emoticon_two = document.createElement("img");
-
-  emoticon_two.src = "./images/emoticon6" + ".png";
-  emoticon_two.setAttribute("class", "emoticon");
-  div.append(emoticon_two);
-
-  const emoticon_three = document.createElement("img");
-  emoticon_three.src = "./images/emoticon4" + ".png";
-  emoticon_three.setAttribute("class", "emoticon");
-  div.append(emoticon_three);
-
   gsap.registerPlugin();
   gsap.registerEffect({
     name: "fade",
@@ -517,15 +485,15 @@ start_emo_group = () => {
   });
 
   let tl = gsap.timeline();
-  tl.fade(emoticon_one)
-    .fade(emoticon_two, "-=1")
-    .to(emoticon_one, { x: "+=50" })
-    .fade(emoticon_three, "-=1.5")
-    .to(emoticon_two, { x: "+=25" })
+  tl.fade(".emoticon_one")
+    .fade(".emoticon_two", "-=1")
+    .to(".emoticon_one", { x: "+=50" })
+    .fade(".emoticon_three", "-=1.5")
+    .to(".emoticon_two", { x: "+=25" })
     .add("start")
 
     .to(
-      emoticon_one,
+      ".emoticon_one",
       {
         x: "+=10",
 
@@ -534,7 +502,7 @@ start_emo_group = () => {
       "-=1"
     )
     .to(
-      emoticon_two,
+      ".emoticon_two",
       {
         x: "+=40",
 
@@ -542,13 +510,13 @@ start_emo_group = () => {
       },
       "-=1" //test du saut ici
     )
-    .to(emoticon_three, {
+    .to(".emoticon_three", {
       x: "+=20",
 
       ease: "bounce",
     })
     .to(
-      emoticon_one,
+      ".emoticon_one",
       {
         x: "-=50",
         scale: 1,
@@ -557,7 +525,7 @@ start_emo_group = () => {
       "-=1"
     )
     .to(
-      emoticon_two,
+      ".emoticon_two",
       {
         x: "-=35",
         scale: 1,
@@ -566,7 +534,7 @@ start_emo_group = () => {
       "-=1"
     )
     .to(
-      emoticon_three,
+      ".emoticon_three",
       {
         x: "-=25",
         scale: 1,
@@ -575,7 +543,7 @@ start_emo_group = () => {
       "-=1"
     )
     .to(
-      emoticon_one,
+      ".emoticon_one",
       {
         x: "+=60",
         ease: "bounce",
@@ -583,7 +551,7 @@ start_emo_group = () => {
       "start"
     )
     .to(
-      emoticon_two,
+      ".emoticon_two",
       {
         x: "+=45",
         ease: "bounce",
@@ -591,7 +559,7 @@ start_emo_group = () => {
       "start"
     )
     .to(
-      emoticon_three,
+      ".emoticon_three",
       {
         x: "+=60",
         ease: "bounce",
@@ -618,13 +586,13 @@ start_emo_group = () => {
       delay: -0.5,
       autoAlpha: 0,
     }) //////////  roulade collective
-    .to([emoticon_one, emoticon_two, emoticon_three], 2.2, {
+    .to([".emoticon_one", ".emoticon_two", ".emoticon_three"], 2.2, {
       rotation: 540,
       ease: Linear.easeNone,
       x: "+=200",
     })
     .to(
-      [emoticon_one, emoticon_two, emoticon_three],
+      [".emoticon_one", ".emoticon_two", ".emoticon_three"],
       2,
       {
         rotation: 1080,
@@ -632,57 +600,49 @@ start_emo_group = () => {
         x: "+=260",
       },
       "+=0.5"
-    ) //////////  saut collectif
-    .to([emoticon_one, emoticon_two, emoticon_three], 0.3, {
-      scaleY: 0.6,
-    })
-    .to([emoticon_one, emoticon_two, emoticon_three], 0.2, {
-      scaleY: 1,
-    })
-    .to(
-      [emoticon_one, emoticon_two, emoticon_three],
-      0.7,
-      {
-        bezier: {
-          type: "thru",
-          values: [
-            { x: 50, y: -350 },
-            { x: 350, y: 0 },
-          ],
-          curviness: 1,
-        },
-        ease: Power2.easeOut,
-      },
-      "-=0.2"
-    )
+    ); //////////  saut collectif
 
-    .to([emoticon_one, emoticon_two, emoticon_three], 0.3, {
-      scaleY: 0.6,
-    })
-    .to([emoticon_one, emoticon_two, emoticon_three], 0.2, {
-      scaleY: 1,
-    })
-    .to(
-      [emoticon_one, emoticon_two, emoticon_three],
-      0.7,
-      {
-        bezier: {
-          type: "thru",
-          values: [
-            { x: 500, y: -300 },
-            { x: 650, y: 0 },
-          ],
-          curviness: 1,
+  setTimeout(() => {
+    $(".emoticon").each(function (index) {
+      let tl = new TimelineMax({ delay: index * 3 });
+      tl.to(this, 0.3, { scaleY: 0.6 }, "in");
+      tl.to(
+        this,
+        0.7,
+        {
+          motionPath: {
+            type: "thru",
+            values: [
+              { x: 20, y: -140 },
+              { x: 140, y: 0 },
+            ],
+            curviness: 1,
+          },
+          ease: Power2.easeOut,
         },
-        ease: Power2.easeOut,
-      },
-      "-=0.2"
-    )
+        "-=0.2"
+      );
+      tl.to(this, 0.3, { scaleY: 0.6 }, "+=3");
+      tl.to(this, 0.2, { scaleY: 1 }, "+=3");
+      tl.to(
+        this,
+        0.7,
+        {
+          motionPath: {
+            type: "thru",
+            values: [
+              { x: 200, y: -120 },
+              { x: 260, y: 0 },
+            ],
 
-    .set([emoticon_one, emoticon_two, emoticon_three], {
-      opacity: 0,
-      immediateRender: false,
+            curviness: 1,
+          },
+          ease: Power2.easeOut,
+        },
+        "-=0.2"
+      );
     });
+  }, 25000);
 };
 
 /*
@@ -751,14 +711,14 @@ tl.staggerTo ([f1_1, f1_2, f1_3], 0.5, {opacity: 1, left:"+=40px"}, 0.25 )
 
 console.clear();
 // TweenMax.set("#demo", {xPercent:-50, yPercent:-50});
-var paths = document.querySelectorAll("path");
+var paths = document.getElementsByClassName("smog");
 var startX = 626;
 var startY = 516;
-var tl = new TimelineMax({ paused: true, delay: 16 });
+var tl = gsap.timeline({ paused: true, delay: 16 });
 
 for (i = 0; i < paths.length; i++) {
   var data = paths[i].getBBox();
-  var nested = new TimelineLite();
+  var nested = gsap.timeline();
   var durationTranslate = (Math.random() + 0.5) * 1;
   var cleaningDelay = 6 - durationTranslate;
   console.log(
