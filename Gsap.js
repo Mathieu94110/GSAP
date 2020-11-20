@@ -1,8 +1,22 @@
 // identification de la grue et de l'émoticon
 const conveyor = document.getElementById("conveyor");
 const arm = document.getElementById("arm");
-//const emoticon = document.getElementById("emoticon");
 
+//evenement au clique pour lancer animations et musiques apres rechargement de la page
+function reloadP() {
+  sessionStorage.setItem("reloading", "true");
+  document.location.reload();
+}
+
+window.onload = function () {
+  var reloading = sessionStorage.getItem("reloading");
+  if (reloading) {
+    sessionStorage.removeItem("reloading");
+    start_emo_content();
+    emoHappySong();
+  }
+};
+///////////////////////////////
 basics_animations = () => {
   ///Vol aléatoire de Bowser
 
@@ -196,6 +210,30 @@ tl.to(
 //
 start_emo_content = () => {
   basics_animations();
+
+  /*audio controller*/
+  emoHappySong = () => {
+    document.getElementById("audio_controller").style.visibility = "visible";
+    var music = document.getElementById("music");
+    music.src = "./songs/overworld_theme_super_mario_3d_land.mp3";
+    music.type = "audio/mpeg";
+    music.autoplay = "true";
+    var play_music_button = document.getElementById("play-music-button");
+
+    function playAudio() {
+      if (music.paused) {
+        music.play();
+        play_music_button.className = "pause";
+      } else {
+        music.pause();
+        play_music_button.className = "play";
+      }
+      music.addEventListener("ended", function () {
+        play_music_button.className = "play";
+      });
+    }
+    play_music_button.addEventListener("click", playAudio);
+  };
   //cache de l'emoticon_hungry sur le coté
   document.getElementById("emoticon_hungry").style.visibility = "hidden";
   document.getElementById("emoticon_happy").style.visibility = "visible";
@@ -251,8 +289,6 @@ start_emo_content = () => {
 
   gsap.to("#mushroom", 0.1, { visibility: "hidden", delay: 11.6 });
 
-  // this code has the same effect
-
   /////////////
   gsap.to("#emoticon_happy", {
     ////// tete s'approche du mur
@@ -261,9 +297,11 @@ start_emo_content = () => {
     delay: 11.8,
   });
 
-  gsap.to("emoticon_happy", {
+  gsap.to("#emoticon_happy", {
     duration: 0.5,
     delay: 13.8,
+    rotation: 1080,
+    ease: Linear.easeNone,
     x: 990,
   });
 
@@ -294,13 +332,37 @@ start_emo_content = () => {
   tl.to("#emoticon_happy", 0.5, { y: 0 })
     .to("#emoticon_happy", 1.25, { y: 5, ease: Power1.easeInOut })
     .to("#emoticon_happy", 1.75, { x: "+=344" }, "-=1.75")
-    .to("#emoticon_happy", 1.5, { delay: 2.5, y: 90 });
+    .to("#emoticon_happy", 1.5, { y: 90 });
   ///////////////////
 };
 start_emo_hungry = () => {
-  document.getElementById("emoticon_hungry").style.visibility = "visible";
   basics_animations();
+
+  emoHungrySong = () => {
+    // controlleurs audio
+    document.getElementById("audio_controller").style.visibility = "visible";
+    var music = document.getElementById("music");
+    music.src = "./songs/winning.mp3";
+    music.type = "audio/mpeg";
+    music.autoplay = "true";
+    var play_music_button = document.getElementById("play-music-button");
+
+    function playAudio() {
+      if (music.paused) {
+        music.play();
+        play_music_button.className = "pause";
+      } else {
+        music.pause();
+        play_music_button.className = "play";
+      }
+      music.addEventListener("ended", function () {
+        play_music_button.className = "play";
+      });
+    }
+    play_music_button.addEventListener("click", playAudio);
+  };
   const emoticon_hungry = document.getElementById("emoticon_hungry");
+  emoticon_hungry.style.visibility = "visible";
 
   gsap.fromTo(
     emoticon_hungry,
@@ -422,7 +484,33 @@ start_emo_hungry = () => {
   //.to(emoticon, 2, { x: "+=220", duration: 2, rotation: 360 });
   /////////
 };
+
 start_emo_group = () => {
+  /*audio controller*/
+
+  emoGroupSong = () => {
+    document.getElementById("audio_controller").style.visibility = "visible";
+    var music = document.getElementById("music");
+    music.src = "./songs/metallic-mario-super-mario-64.mp3";
+    music.type = "audio/mpeg";
+    music.autoplay = "true";
+    var play_music_button = document.getElementById("play-music-button");
+
+    function playAudio() {
+      if (music.paused) {
+        music.play();
+        play_music_button.className = "pause";
+      } else {
+        music.pause();
+        play_music_button.className = "play";
+      }
+      music.addEventListener("ended", function () {
+        play_music_button.className = "play";
+      });
+    }
+    play_music_button.addEventListener("click", playAudio);
+  };
+
   basics_animations();
 
   document.getElementById("g1").style.visibility = "visible";
@@ -590,199 +678,78 @@ start_emo_group = () => {
       rotation: 540,
       ease: Linear.easeNone,
       x: "+=200",
+    }) ///test
+    .to([".emoticon_one", ".emoticon_two", ".emoticon_three"], {
+      duration: 0.5,
+      rotation: 1080,
+      ease: Linear.easeNone,
+      x: "+=240",
     })
-    .to(
-      [".emoticon_one", ".emoticon_two", ".emoticon_three"],
-      2,
-      {
-        rotation: 1080,
-        ease: Linear.easeNone,
-        x: "+=260",
-      },
-      "+=0.5"
-    ); //////////  saut collectif
+    .to([".emoticon_one", ".emoticon_two", ".emoticon_three"], {
+      duration: 0.5,
+      rotation: 1080,
+      ease: Linear.easeNone,
+      x: "+=332",
+      y: "-=180",
+    })
+    .to([".emoticon_one", ".emoticon_two", ".emoticon_three"], {
+      delay: 0.5,
+      duration: 0.5,
 
-  setTimeout(() => {
-    $(".emoticon").each(function (index) {
-      let tl = new TimelineMax({ delay: index * 3 });
-      tl.to(this, 0.3, { scaleY: 0.6 }, "in");
-      tl.to(
-        this,
-        0.7,
-        {
-          motionPath: {
-            type: "thru",
-            values: [
-              { x: 20, y: -140 },
-              { x: 140, y: 0 },
-            ],
-            curviness: 1,
-          },
-          ease: Power2.easeOut,
-        },
-        "-=0.2"
-      );
-      tl.to(this, 0.3, { scaleY: 0.6 }, "+=3");
-      tl.to(this, 0.2, { scaleY: 1 }, "+=3");
-      tl.to(
-        this,
-        0.7,
-        {
-          motionPath: {
-            type: "thru",
-            values: [
-              { x: 200, y: -120 },
-              { x: 260, y: 0 },
-            ],
-
-            curviness: 1,
-          },
-          ease: Power2.easeOut,
-        },
-        "-=0.2"
-      );
+      y: "+=100",
     });
-  }, 25000);
-};
 
-/*
-   
-   tl.staggerTo(this, 0.5, {
-    rotation: 360,
-    xPercent: "-50%",
-    yPercent: "-50%",
-    x: 850,
-  })
-    .to(emoticon_hungry, 3, { rotation: 360, x: 1050 })
-        );*/
+  // TweenMax.set("#demo", {xPercent:-50, yPercent:-50});
+  var paths = document.getElementsByClassName("smog");
+  var startX = 626;
+  var startY = 516;
+  var tl5 = gsap.timeline({ paused: true, delay: 16 });
 
-/*
-    .tl1 = new TimelineMax({ stagger: 2 });
-  tl1
-    .staggerTo(
-      [emoticon_one, emoticon_two, emoticon_three],
-      0.5,
-
-      { x: 0, y: -210 },
-      0.25
-    )
-    .staggerTo(
-      [emoticon_one, emoticon_two, emoticon_three],
-      0.5,
-      { x: "+=20" },
-      0.25,
-      "+=3"
-    )
-    .staggerTo(
-      [emoticon_one, emoticon_two, emoticon_three],
-      0.5,
-      { x: "+=50" },
-      0.25,
-      "+=3"
-    )
-    .staggerTo(
-      [emoticon_one, emoticon_two, emoticon_three],
-      0.5,
-      { x: "+=100", y: "+=150", rotation: 360 },
-      0.25,
-      "+=0.2"
-    );*/
-
-/*
-tl.staggerTo ([f1_1, f1_2, f1_3], 0.5, {opacity: 1, left:"+=40px"}, 0.25 )
-  .staggerTo ([f1_1, f1_2, f1_3], 0.5, {opacity: 0, left:"-=40px"}, 0.25 , "+=3" );
-
-
-
-
-
-  gsap.to(emoticon_one, { x: 345, y: 50 });
-
-  gsap.fromTo(
-    emoticon,
-    { x: 345, y: 400 },
-    { y: 5, duration: 2, ease: "power3.out" }
-  );
-  gsap.to(emoticon, 2, { x: 370, delay: 2 });
-  gsap.to(emoticon, 1, { x: 400, duration: 1 });
-  gsap.to(emoticon, 0.5, { x: 485, y: 180, ease: "bounce", delay: 4.5 }); //quand elle tombe*/
-
-/**/
-
-console.clear();
-// TweenMax.set("#demo", {xPercent:-50, yPercent:-50});
-var paths = document.getElementsByClassName("smog");
-var startX = 626;
-var startY = 516;
-var tl = gsap.timeline({ paused: true, delay: 16 });
-
-for (i = 0; i < paths.length; i++) {
-  var data = paths[i].getBBox();
-  var nested = gsap.timeline();
-  var durationTranslate = (Math.random() + 0.5) * 1;
-  var cleaningDelay = 6 - durationTranslate;
-  console.log(
-    "{durationTranslate:" +
-      durationTranslate +
-      ", cleaningDelay: " +
-      cleaningDelay +
-      "}"
-  );
-  nested
-    .from(paths[i], 2, { autoAlpha: 0 })
-    .fromTo(
-      paths[i],
-      1.5,
-      { scale: 0, transformOrigin: "50% 50%", ease: Power0.easeNone },
-      { scale: 1.5, transformOrigin: "50% 50%", ease: Power0.easeNone },
-      "-=2"
-    )
-    .fromTo(
-      paths[i],
-      6,
-      { scale: 1.5, transformOrigin: "50% 50%", ease: Power0.easeNone },
-      { scale: 0.5, transformOrigin: "50% 50%", ease: Power0.easeNone }
-    )
-    .from(
-      paths[i],
-      durationTranslate,
-      {
-        x: startX - data.x - data.width / 2,
-        y: startY - data.y - data.height / 2,
-        ease: Power4.easeOut,
-      },
-      "-=7"
-    )
-    .to(
-      paths[i],
-      2,
-      { autoAlpha: 0, transformOrigin: "50% 50%", ease: Power0.easeNone },
-      "-=3"
+  for (i = 0; i < paths.length; i++) {
+    var data = paths[i].getBBox();
+    var nested = gsap.timeline();
+    var durationTranslate = (Math.random() + 0.5) * 1;
+    var cleaningDelay = 6 - durationTranslate;
+    console.log(
+      "{durationTranslate:" +
+        durationTranslate +
+        ", cleaningDelay: " +
+        cleaningDelay +
+        "}"
     );
-  tl.add(nested, 0);
-}
+    nested
+      .from(paths[i], 2, { autoAlpha: 0 })
+      .fromTo(
+        paths[i],
+        1.5,
+        { scale: 0, transformOrigin: "50% 50%", ease: Power0.easeNone },
+        { scale: 1.5, transformOrigin: "50% 50%", ease: Power0.easeNone },
+        "-=2"
+      )
+      .fromTo(
+        paths[i],
+        6,
+        { scale: 1.5, transformOrigin: "50% 50%", ease: Power0.easeNone },
+        { scale: 0.5, transformOrigin: "50% 50%", ease: Power0.easeNone }
+      )
+      .from(
+        paths[i],
+        durationTranslate,
+        {
+          x: startX - data.x - data.width / 2,
+          y: startY - data.y - data.height / 2,
+          ease: Power4.easeOut,
+        },
+        "-=7"
+      )
+      .to(
+        paths[i],
+        2,
+        { autoAlpha: 0, transformOrigin: "50% 50%", ease: Power0.easeNone },
+        "-=3"
+      );
+    tl5.add(nested, 0);
+  }
 
-tl.play();
-
-/**/
-
-// controlleurs audio
-
-emoHappySong = () => {
-  let song_container = (document.getElementById("audio_controller").innerHTML =
-    '<audio id="audio-player" controls="controls" autoplay="true" src="./songs/overworld_theme_super_mario_3d_land.mp3" type="audio/mpeg">');
-
-  song_container.play();
-};
-
-emoSadSong = () => {
-  let song_container = (document.getElementById("audio_controller").innerHTML =
-    '<audio id="audio-player" controls="controls" autoplay="true" src="./songs/a_farewell_to_kirby_kirby_star_allies_music_7922055104079329814.mp3" type="audio/mpeg">');
-  song_container.play();
-};
-
-emoGroupSong = () => {
-  let song_container = (document.getElementById("audio_controller").innerHTML =
-    '<audio id="audio-player" controls="controls" autoplay="true" src="./songs/metallic-mario-super-mario-64.mp3" type="audio/mpeg">');
-  song_container.play();
+  tl5.play();
 };

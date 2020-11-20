@@ -312,7 +312,7 @@ a.background-button:hover:after {
 
 /* Fin du design des bouttons*/
 
-.quatreboutons {
+.three_buttons {
   display: flex;
 
   justify-content: space-between;
@@ -323,76 +323,7 @@ a.background-button:hover:after {
 
   padding: 2.5% 5%;
 }
-#audioplayer {
-  width: 480px;
-  height: 75px;
-  margin: 50px auto auto auto;
-  border: solid;
-  text-align: center;
-  background-color: rgba(5, 173, 13, 0.49);
-}
-#audio_controller {
-  width: 100%;
-  text-align: center;
-}
-#pButton {
-  height: 60px;
-  width: 60px;
-  border: none;
-  background-size: 70% 70%;
-  background-repeat: no-repeat;
-  background-position: center;
-  float: left;
-  outline: none;
-}
 
-.play {
-  background: url("Play_button.png");
-}
-.pause {
-  background: url("Pause_button.png");
-}
-
-#timeline {
-  width: 400px;
-  height: 20px;
-  margin-top: 20px;
-  float: left;
-  border-radius: 15px;
-  border: black 1px solid;
-  display: block;
-  background-color: rgb(43, 194, 83);
-  background-image: linear-gradient(
-    center bottom,
-    rgb(43, 194, 83) 37%,
-    rgb(84, 240, 84) 69%
-  );
-  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
-  position: relative;
-}
-
-#playhead {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  margin-top: 1px;
-  background: rgba(0, 0, 0, 1);
-}
-
-#volume_control {
-  margin: auto;
-  width: 50%;
-}
-
-#rngVolume_label {
-  vertical-align: middle;
-}
-
-#rngVolume {
-  margin-top: 8px;
-  vertical-align: middle;
-}
 /* 3 roues*/
 .whell_one {
 }
@@ -500,4 +431,109 @@ rect.segment {
   fill-opacity: 1;
   stroke: rgb(108, 255, 132);
   stroke-width: 3;
+}
+/* audio controller before 
+#audio_controller {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  width: 8em;
+  margin-top: -2.5em;
+}
+#audioplayer {
+  width: 480px;
+  height: 75px;
+  margin: 50px auto auto auto;
+  border: solid;
+  text-align: center;
+  background-color: rgba(5, 173, 13, 0.49);
+}
+
+#pButton {
+  height: 60px;
+  width: 60px;
+  border: none;
+  background-size: 70% 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  float: left;
+  outline: none;
+}
+
+.play {
+  background: url("Play_button.png");
+}
+.pause {
+  background: url("Pause_button.png");
+}
+
+#timeline {
+  width: 400px;
+  height: 20px;
+  margin-top: 20px;
+  float: left;
+  border-radius: 15px;
+  border: black 1px solid;
+  display: block;
+  background-color: rgb(43, 194, 83);
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43, 194, 83) 37%,
+    rgb(84, 240, 84) 69%
+  );
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+#playhead {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-top: 1px;
+  background: rgba(0, 0, 0, 1);
+}
+
+#volume_control {
+  margin: auto;
+  width: 50%;
+}
+
+#rngVolume_label {
+  vertical-align: middle;
+}
+
+#rngVolume {
+  margin-top: 8px;
+  vertical-align: middle;
+}
+
+/* audio controller */
+#audio_controller {
+  text-align: center;
+  visibility: hidden;
+  z-index: 30000000000000000000000;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 1.5vw;
+}
+#play-music-button {
+  height: 60px;
+  width: 60px;
+  border: none;
+  background-size: 50% 50%;
+  background-position: center;
+  z-index: 30000000000000000000000;
+}
+
+.play {
+  background: url("https://image.flaticon.com/icons/png/512/0/375.png")
+    no-repeat;
+  z-index: 30000000000000000000000;
+}
+
+.pause {
+  background: url("./images/paused.png") no-repeat;
+  z-index: 30000000000000000000000;
 }
