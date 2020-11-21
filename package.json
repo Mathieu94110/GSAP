@@ -3,7 +3,7 @@
   "version": "1.0.0",
     "private": false,
   "description": "My Gsap project second version",
-  "homepage": "https://github.com/Mathieu94110/GSAP.git",
+  "homepage": "https://Mathieu94110.github.io/GSAP",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "gh-pages"
