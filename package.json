@@ -1,9 +1,9 @@
 {
   "name": "gsap",
   "version": "1.0.0",
+    "private": false,
   "description": "My Gsap project second version",
-  "homepage": "http://github.com/Mathieu94110/GSAP",
-  "main": "Gsap.js",
+  "homepage": "https://github.com/Mathieu94110/GSAP.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "gh-pages"
