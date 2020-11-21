@@ -1,10 +1,12 @@
 {
   "name": "gsap",
   "version": "1.0.0",
-  "description": "First project modified",
+  "description": "My Gsap project second version",
+  "homepage": "http://github.com/Mathieu94110/GSAP",
   "main": "Gsap.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Mathieu94110/GSAP/issues"
   },
-  "homepage": "https://github.com/Mathieu94110/GSAP#readme"
+  "devDependencies": {},
+  "dependencies": {
+    "gh-pages": "^3.1.0"
+  }
 }
