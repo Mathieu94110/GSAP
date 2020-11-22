@@ -2,9 +2,8 @@
   "homepage": "https://Mathieu94110.github.io/GSAP",
   "name": "gsap",
   "version": "1.0.0",
-    "private": false,
+  "private": false,
   "description": "My Gsap project second version",
-
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
