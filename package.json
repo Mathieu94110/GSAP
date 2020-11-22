@@ -2,8 +2,9 @@
   "homepage": "https://Mathieu94110.github.io/GSAP",
   "name": "gsap",
   "version": "1.0.0",
-  "description": "First project modified",
-  "main": "Gsap.js",
+    "private": false,
+  "description": "My Gsap project second version",
+
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -18,6 +19,7 @@
   "bugs": {
     "url": "https://github.com/Mathieu94110/GSAP/issues"
   },
+  "devDependencies": {},
   "dependencies": {
     "gh-pages": "^3.1.0"
   }
