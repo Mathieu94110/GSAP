@@ -2,7 +2,7 @@
 const conveyor = document.getElementById("conveyor");
 const arm = document.getElementById("arm");
 
-//evenement au clique pour lancer animations et musiques apres rechargement de la page
+/*evenement au clique pour lancer animations et musiques apres rechargement de la page
 function reloadP() {
   sessionStorage.setItem("reloading", "true");
   document.location.reload();
@@ -13,10 +13,9 @@ window.onload = function () {
   if (reloading) {
     sessionStorage.removeItem("reloading");
     start_emo_content();
-    emoHappySong();
   }
 };
-///////////////////////////////
+*/
 basics_animations = () => {
   ///Vol aléatoire de Bowser
 
