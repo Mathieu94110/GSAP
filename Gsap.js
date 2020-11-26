@@ -2,20 +2,26 @@
 const conveyor = document.getElementById("conveyor");
 const arm = document.getElementById("arm");
 
-/*evenement au clique pour lancer animations et musiques apres rechargement de la page
-function reloadP() {
-  sessionStorage.setItem("reloading", "true");
+//evenement au clique pour lancer animations et musiques apres rechargement de la page
+function reloadP(type) {
+  sessionStorage.setItem("type", type);
   document.location.reload();
 }
 
 window.onload = function () {
-  var reloading = sessionStorage.getItem("reloading");
-  if (reloading) {
-    sessionStorage.removeItem("reloading");
+  var type = sessionStorage.getItem("type");
+  if (type == "content") {
     start_emo_content();
+    emoHappySong();
+  } else if (type == "hungry") {
+    start_emo_hungry();
+    emoHungrySong();
+  } else {
+    start_emo_group();
+    emoGroupSong();
   }
 };
-*/
+
 basics_animations = () => {
   ///Vol aléatoire de Bowser
 
